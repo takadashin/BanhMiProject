@@ -1,0 +1,73 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15-Oct-2015, 6:50:07 PM
+    Author     : khai
+*/
+/*Main elements*/
+body {margin: 0;padding:0;background:url(../images/body-tail.gif) #b2b2b2;}
+div {margin:0;padding:0;vertical-align: baseline;font-family: Arial, Helvetica, sans-serif;font-size: 12px;font-style: normal;font-variant: normal;font-weight: normal;}
+h3, p {margin:0;padding:0}
+/*Id elements*/
+#header {background: url(../images/header-tail.png) repeat-x; height:211px;}
+#header > .innerwrap {color:#fff;}
+#search_box {font-size: 22px;background: #8DA6C3;border: 2px solid #fff;color:white;border-radius:5px;}
+#btn_search {height: 30px;width: 30px;background: url(../images/icon-search.png);border: 0px;vertical-align: -7px;}
+#footer {background: url(../images/footer-tail.png);min-height: 250px;color:#4E6076;}
+#Content {min-height: 500px;padding:5px 0;}
+#Copyright {height:50px;color:#959797;}
+/*Class elements*/
+.innerwrap {width:998px;margin:0 auto;}
+.clear {clear:both;}
+.login_box {float:right;padding-top:7px;}
+.logo_box {float:left;}
+.search_box {float:right;margin-top:10px;}
+.menu_bar {height:59px;min-width:495px;background: url(../images/body_menu.png) repeat-x;}
+.menu_bar ul {list-style-type: none;font-size: 15px;color:#4E6076;margin-top:20px;float:left;padding:0px;}
+.menu_bar ul > li{float:left;text-transform: uppercase;font-weight: bold;margin:0 25px;}
+.menu_bar a{-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+transition:all 0.3s ease; }
+.menu_bar a:hover{color:orange;}
+.menu_box {float:right;clear:right;margin-top:40px;}
+.footer_box {float:left;width:23%;}
+.footer_box > h3 {text-transform: uppercase;font-size: 23px;font-family: "Comic Sans MS", cursive, sans-serif;}
+.footer_info {font-size:12px;margin:0 5px;}
+.footer_info > ul {list-style: none;padding:0;margin:0;}
+.footer_info > ul >li {padding:5px 0;border-bottom: 1px dotted #000}
+.footer_info > ul >li:last-child {padding:5px 0;border-bottom: 0}
+.footer_info a:hover{font-weight: bold;}
+.sharing_box {background: url(../images/sharinglogo.png) no-repeat;float:right; background-size: contain;width:150px;height:110px; }
+.box_link {display: block;float:left;margin-left: 9px;margin-top: 5px;height: 45px;width: 44px;}
+.header_title {font-family: Arial, Helvetica, sans-serif;font-weight: bold;text-transform: uppercase;color: #4E6076;}
+.article {float:left;width:23%;background: #fff;border: 1px solid #dedede;border-radius: 5px;min-height: 275px;margin-right:10px;-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+transition:all 0.3s ease; }
+.article:hover {border: 1px solid #fff;-moz-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
+	box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px; }
+.article img {width:90%;max-height: 180px;}
+.article center {padding: 15px 5px;}
+.article_content {text-align: left;padding:0 5px;color: rgb(77, 77, 77);font-family: 'Source Sans Pro', Arial;}
+.article_content h3{font-size: 17px;}
+.article_content p{font-size:15px;}
+.article_content a{font-size: 12px;text-decoration: none;color:black; white-space:nowrap;display: inline-block;}
+.top_place {position: relative;}
+.medal{    position: absolute;width: 60px !important;height: auto !important;margin-left: -9px; margin-top: -24px;}
+
+
+
+
+
+
+
+
+
+
+
+
