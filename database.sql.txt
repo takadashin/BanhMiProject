@@ -1,0 +1,98 @@
+DROP TABLE IF EXISTS `made`;
+DROP TABLE IF EXISTS `vote`;
+DROP TABLE IF EXISTS `comment`;
+DROP TABLE IF EXISTS `step`;
+DROP TABLE IF EXISTS `recipe_ingredient`;
+DROP TABLE IF EXISTS `recipe`;
+DROP TABLE IF EXISTS `ingredient`;
+DROP TABLE IF EXISTS `follow`;
+DROP TABLE IF EXISTS `user`;
+
+
+CREATE TABLE `user` (
+  `id` int(4) NOT NULL auto_increment,
+  `username` varchar(50) NOT NULL UNIQUE,
+  `password` varchar(50) NOT NULL,
+  `address` varchar(250) NOT NULL default '',
+  `email` varchar(250) NOT NULL default '',
+  `phone` varchar(50) NOT NULL default '',
+  `role` varchar(50) NOT NULL,
+  `avatar` varchar(250),
+  PRIMARY KEY  (`id`) 
+);
+
+CREATE TABLE `follow` (
+  `id` int(4) NOT NULL auto_increment,
+  `userid` int(4) NOT NULL,
+  `followeduserid` int(4) NOT NULL,
+  PRIMARY KEY  (`id`),
+  CONSTRAINT `FK_Follow_User` FOREIGN KEY (`userid`) REFERENCES `user` (`id`),
+  CONSTRAINT `FK_Follow_Followeduserid` FOREIGN KEY (`followeduserid`) REFERENCES `user` (`id`)
+);
+
+CREATE TABLE `ingredient` (
+  `id` int(4) NOT NULL auto_increment,
+  `name` varchar(250) NOT NULL UNIQUE, 
+  PRIMARY KEY  (`id`) 
+);
+
+CREATE TABLE `recipe` (
+  `id` int(4) NOT NULL auto_increment,
+  `userpostid` int(4) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `servings` int(4),
+  PRIMARY KEY  (`id`),
+  CONSTRAINT `FK_Recipe_Userpostid` FOREIGN KEY (`userpostid`) REFERENCES `user` (`id`)
+);
+
+
+CREATE TABLE `recipe_ingredient` (
+  `id` int(4) NOT NULL auto_increment,
+  `recipeid` int(4) NOT NULL,
+  `ingredientId` int(4) NOT NULL,
+  `detail` varchar(500) NOT NULL default '',
+  PRIMARY KEY  (`id`),
+  CONSTRAINT `FK_Recipe_Ingredient_recipeid` FOREIGN KEY (`recipeid`) REFERENCES `recipe` (`id`),
+  CONSTRAINT `FK_Recipe_Ingredient_ingredientId` FOREIGN KEY (`ingredientId`) REFERENCES `ingredient` (`id`)
+);
+
+
+
+CREATE TABLE `step` (
+  `id` int(4) NOT NULL auto_increment,
+  `recipeid` int(4) NOT NULL,
+  `content` varchar(500) NOT NULL default '',
+  `picture` varchar(250),
+  PRIMARY KEY  (`id`),
+  CONSTRAINT `FK_Step_recipeid` FOREIGN KEY (`recipeid`) REFERENCES `recipe` (`id`)
+);
+
+CREATE TABLE `comment` (
+  `id` int(4) NOT NULL auto_increment,
+  `userpostid` int(4) NOT NULL,
+  `recipeid` int(4) NOT NULL,
+  `content` varchar(500) NOT NULL default '',
+  PRIMARY KEY  (`id`),
+  CONSTRAINT `FK_Comment_userpostid` FOREIGN KEY (`userpostid`) REFERENCES `user` (`id`),
+  CONSTRAINT `FK_Comment_recipeid` FOREIGN KEY (`recipeid`) REFERENCES `recipe` (`id`)
+);
+
+CREATE TABLE `vote` (
+  `id` int(4) NOT NULL auto_increment,
+  `userid` int(4) NOT NULL,
+  `recipeid` int(4) NOT NULL,
+  `like` int(1),
+  PRIMARY KEY  (`id`),
+  CONSTRAINT `FK_Vote_userid` FOREIGN KEY (`userid`) REFERENCES `user` (`id`),
+  CONSTRAINT `FK_Vote_recipeid` FOREIGN KEY (`recipeid`) REFERENCES `recipe` (`id`)
+);
+
+
+CREATE TABLE `made` (
+  `id` int(4) NOT NULL auto_increment,
+  `userid` int(4) NOT NULL,
+  `recipeid` int(4) NOT NULL,
+  PRIMARY KEY  (`id`),
+  CONSTRAINT `FK_Made_userid` FOREIGN KEY (`userid`) REFERENCES `user` (`id`),
+  CONSTRAINT `FK_Made_recipeid` FOREIGN KEY (`recipeid`) REFERENCES `recipe` (`id`)
+);
