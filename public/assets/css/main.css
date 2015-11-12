@@ -59,6 +59,8 @@ transition:all 0.3s ease; }
 .article_content a{font-size: 12px;text-decoration: none;color:black; white-space:nowrap;display: inline-block;}
 .top_place {position: relative;}
 .medal{    position: absolute;width: 60px !important;height: auto !important;margin-left: -9px; margin-top: -24px;}
+.mid_content {height:100px;overflow: hidden;text-overflow: ellipsis;}
+.footer_content {height:70px;}
 
 
 
