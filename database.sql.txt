@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS `ingredient`;
 DROP TABLE IF EXISTS `follow`;
 DROP TABLE IF EXISTS `user`;
    
-
 CREATE TABLE `user` (
   `id` int(4) NOT NULL auto_increment,
   `username` varchar(50) NOT NULL UNIQUE,
