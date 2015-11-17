@@ -4,9 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class recipe extends Model{
     
-    protected  $table ="recipes";
+    protected  $table ="recipe";
     public  $timestamps = false;
-    protected $fillable = ['userpostid','name','servings'];
+    protected $fillable = ['id','userpostid','name','servings','Description','img'];
     
     
     
