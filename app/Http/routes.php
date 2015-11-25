@@ -14,7 +14,7 @@
 
 
 Route::get('index' , 'RecipeController@index');
-Route::get('recipe','RecipeController@show');
+Route::get('recipe','RecipeController@recipe');
 Route::get('/', function () {
     return view('pages.home');
 });

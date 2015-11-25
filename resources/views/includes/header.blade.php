@@ -15,9 +15,9 @@
             <div class="menu_bar">
             <div style="float: left;height:100%;width:16px;background: url(images/head_menu.png) repeat-x;"></div>
             <ul>
-                <li><a>Home page</a></li>
-                <li><a>Recipe</a></li>
-                <li><a>Chef</a></li>
+                <li><a href="/index">Home page</a></li>
+                <li><a href="/recipe">Recipe</a></li>
+                <li><a href="/chef">Chef</a></li>
                 <li><a>About Us</a></li>
             </ul>
             <div style="float: right;height:100%;width:16px;background: url(images/footer_menu.png) repeat-x;"></div>

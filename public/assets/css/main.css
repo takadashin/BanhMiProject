@@ -30,7 +30,7 @@ h3, p {margin:0;padding:0}
 .menu_bar ul > li{float:left;text-transform: uppercase;font-weight: bold;margin:0 25px;}
 .menu_bar a{-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
-	-webkit-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;    color: #4E6076;text-decoration: none;
 transition:all 0.3s ease; }
 .menu_bar a:hover{color:orange;}
 .menu_box {float:right;clear:right;margin-top:40px;}
