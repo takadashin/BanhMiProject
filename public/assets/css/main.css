@@ -61,15 +61,5 @@ transition:all 0.3s ease; }
 .medal{    position: absolute;width: 60px !important;height: auto !important;margin-left: -9px; margin-top: -24px;}
 .mid_content {height:100px;overflow: hidden;text-overflow: ellipsis;}
 .footer_content {height:70px;}
-
-
-
-
-
-
-
-
-
-
-
-
+a.log{color: darkorange}
+div.login{height: 10px; alignment-adjust: middle; float: right}
