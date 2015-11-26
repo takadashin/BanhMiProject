@@ -19,7 +19,7 @@ h3, p {margin:0;padding:0}
 #btn_search {height: 30px;width: 30px;background: url(../images/icon-search.png);border: 0px;vertical-align: -7px;}
 #footer {background: url(../images/footer-tail.png);min-height: 250px;color:#4E6076;}
 #Content {min-height: 500px;padding:5px 0;}
-#Copyright {height:50px;color:#959797;}
+#Copyright {height:15px;color:#959797;}
 #recipe_detail {background:#fff;border-radius: 5px;-moz-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
 	-webkit-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
 	box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px; min-height: 200px; }
@@ -115,4 +115,4 @@ transition:all 0.3s ease;
 
 
 a.log{color: darkorange}
-div.login{height: 10px; alignment-adjust: middle; float: right}
+div.login{height: 10px; alignment-adjust: middle; float: right; margin-left: 10px}
