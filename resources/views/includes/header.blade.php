@@ -2,12 +2,12 @@
     <div class="login_box">  
         @if(session()->has('username'))
             Welcome  {{session()->get('username')}}
-            <a class='log' href="/auth/logout">Log out</a>
+            <a class='log' href="{{ url('/auth/logout') }}">Log out</a>
         @else
             <a href="/auth/twitterLogin">
                 <img src="{{ asset('assets/images/sign-in-with-twitter-l.png') }}" width="151" height="24" border="0" />
             </a>
-        <div class='login'><a class='log' href="/auth/logout">Log In</a></div>
+        <div class='login'><a class='log' href="{{ url('/auth/logout') }}">Log In</a></div>
         @endif
     </div>
     <div class="clear"></div>
