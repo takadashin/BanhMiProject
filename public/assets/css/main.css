@@ -66,6 +66,7 @@ transition:all 0.3s ease; }
 .medal{    position: absolute;width: 60px !important;height: auto !important;margin-left: -9px; margin-top: -24px;}
 .mid_content {height:100px;overflow: hidden;text-overflow: ellipsis;}
 .footer_content {height:70px;}
+
 .navbar_action {display: table;width:100%;margin:0;padding:0;position: absolute;bottom:0;}
 .navbar_action a {display: block;
     background: #999999;
@@ -113,8 +114,5 @@ transition:all 0.3s ease;
 .ingre_step p{display: inline; margin-left:5px;}
 
 
-
-
-
-
-
+a.log{color: darkorange}
+div.login{height: 10px; alignment-adjust: middle; float: right}

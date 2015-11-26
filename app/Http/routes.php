@@ -19,3 +19,5 @@ Route::get('recipe/{id}','RecipeController@detail');
 Route::get('/', function () {
     return view('pages.home');
 });
+Route::get('auth/twitterLogin', 'Auth\AuthController@twitterLogin');
+Route::get('auth/logout', 'Auth\AuthController@logout');
