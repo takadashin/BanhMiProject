@@ -7,27 +7,45 @@ use Illuminate\Http\Request;
 
 class RecipeController extends Controller {
     public function  index(){
-        $cds =  DB::select('SELECT recipe.*,user.avatar,user.username,'
+//        $cds =  DB::select('SELECT recipe.*,user.avatar,user.username,'
+//                . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
+//                . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
+//                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '
+//                . 'FROM recipe,user where recipe.userpostid = user.id order by recipe.datepost LIMIT 16');
+        
+        $cds = DB::table('recipe')
+        ->join('user', 'recipe.userpostid', '=', 'user.id')
+        ->select(DB::raw('recipe.* ,user.avatar,user.username,'
                 . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
                 . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
-                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '
-                . 'FROM recipe,user where recipe.userpostid = user.id order by recipe.datepost LIMIT 16');
-        $db =  DB::select('SELECT recipe.*,user.avatar,user.username,'
+                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
+        ->orderBy('recipe.datepost')->take(16)
+        ->get();
+        $db =  DB::table('recipe')
+        ->join('user', 'recipe.userpostid', '=', 'user.id')
+        ->select(DB::raw('recipe.* ,user.avatar,user.username,'
                 . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
                 . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
-                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '
-                . 'FROM recipe,user where recipe.userpostid = user.id order by countlike LIMIT 16');
+                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
+        ->orderBy('countlike')->take(16)
+        ->get();
         return view('pages.index', ['recipe' => $cds,'popular' => $db]);
     }
     
      public function  recipe(){
-        $cds =  DB::select('SELECT recipe.*,user.avatar,user.username,'
+        $cds = DB::table('recipe')
+        ->join('user', 'recipe.userpostid', '=', 'user.id')
+        ->select(DB::raw('recipe.* ,user.avatar,user.username,'
                 . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
                 . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
-                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '
-                . 'FROM recipe,user where recipe.userpostid = user.id order by recipe.datepost LIMIT 16');
-        
+                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
+        ->orderBy('recipe.datepost')->take(16)
+        ->get();
         return view('pages.recipe', ['recipe' => $cds]);
+    } 
+    public function  detail(){
+       
+        return view('pages.recipedetail');
     } 
     
     

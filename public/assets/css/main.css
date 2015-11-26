@@ -8,6 +8,7 @@ and open the template in the editor.
     Author     : khai
 */
 /*Main elements*/
+
 body {margin: 0;padding:0;background:url(../images/body-tail.gif) #b2b2b2;}
 div {margin:0;padding:0;vertical-align: baseline;font-family: Arial, Helvetica, sans-serif;font-size: 12px;font-style: normal;font-variant: normal;font-weight: normal;}
 h3, p {margin:0;padding:0}
@@ -19,6 +20,10 @@ h3, p {margin:0;padding:0}
 #footer {background: url(../images/footer-tail.png);min-height: 250px;color:#4E6076;}
 #Content {min-height: 500px;padding:5px 0;}
 #Copyright {height:50px;color:#959797;}
+#recipe_detail {background:#fff;border-radius: 5px;-moz-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
+	box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px; min-height: 200px; }
+
 /*Class elements*/
 .innerwrap {width:998px;margin:0 auto;}
 .clear {clear:both;}
@@ -61,11 +66,51 @@ transition:all 0.3s ease; }
 .medal{    position: absolute;width: 60px !important;height: auto !important;margin-left: -9px; margin-top: -24px;}
 .mid_content {height:100px;overflow: hidden;text-overflow: ellipsis;}
 .footer_content {height:70px;}
-
-
-
-
-
+.navbar_action {display: table;width:100%;margin:0;padding:0;position: absolute;bottom:0;}
+.navbar_action a {display: block;
+    background: #999999;
+    border-left: 1px solid #fff;
+    height: 60px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'Source Sans Pro', Arial;
+    line-height: 60px;}
+.navbar_action a:hover {
+    background:#dedede;-o-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+transition:all 0.3s ease;
+}
+.navbar_action img {
+    width: 30px;height:auto;vertical-align: -8px;opacity: 0.7;
+}
+.navbar_action a:hover img{opacity: 0.5;}
+.recipe_detail_top {width:650px;margin:auto;}
+.recipe_detail_body {padding: 10px;margin:10px;font-family: 'Source Sans Pro', Arial; color: #a0a0a0;}
+.recipe_detail_body h1{    border-bottom: 1px solid #dedede;
+    font-size: 32px;
+    font-weight: normal;
+}
+.ingre_box{
+    
+}
+.ingre_item {
+   color:black;float:left;width:30%;    font-size: 17px;
+    padding-left: 25px;
+}
+.ingre_item img{height: 33px;
+    vertical-align: -10px;}
+.ingre_step {color:black;    font-size: 17px;margin:10px;}
+.ingre_step i{    font-style: normal;
+    border: 1px solid #7D7D7D;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    border-radius: 30px;
+    text-align: center;
+    color:#7D7D7D;
+}
+.ingre_step p{display: inline; margin-left:5px;}
 
 
 
