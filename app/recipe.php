@@ -6,11 +6,17 @@ class recipe extends Model{
     
     protected  $table ="recipe";
     public  $timestamps = false;
-    protected $fillable = ['id', 'userpostid', 'name', 'servings', 'Description', 'img', 'datepost'];
+    protected $fillable = [ 'userpostid', 'name', 'servings', 'Description', 'img', 'datepost'];
     
     public function user()
     {
-        return $this->hasOne('user');
+        return $this->hasOne('App\userrecipe','id','userpostid');
     }
+    
+    public function recept_ingre()
+    {
+        return $this->hasMany('App\recept_ingre');
+    }
+  
     
 }

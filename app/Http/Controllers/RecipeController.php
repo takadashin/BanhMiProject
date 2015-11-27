@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Recipe;
+
 use Illuminate\Http\Request;
 
 
@@ -43,9 +44,10 @@ class RecipeController extends Controller {
         ->get();
         return view('pages.recipe', ['recipe' => $cds]);
     } 
-    public function  detail(){
-       
-        return view('pages.recipedetail');
+    public function  detail($id){
+        $recipe = recipe::find($id);
+        $userstuff = $recipe->user;
+        return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff]);
     } 
     
     

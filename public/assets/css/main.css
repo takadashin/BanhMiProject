@@ -101,7 +101,7 @@ transition:all 0.3s ease;
 }
 .ingre_item img{height: 33px;
     vertical-align: -10px;}
-.ingre_step {color:black;    font-size: 17px;margin:10px;}
+.ingre_step {color:black;    font-size: 17px;margin:10px;margin-left:80px;}
 .ingre_step i{    font-style: normal;
     border: 1px solid #7D7D7D;
     height: 20px;

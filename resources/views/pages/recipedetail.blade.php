@@ -11,9 +11,9 @@
             <center>
                 <div class="recipe_detail_top">
                     <div style="float:left;text-align: center;width:60%;height:250px;overflow: hidden;position:relative;">
-                        <h2 style="color:orange">Italian Meatball Sandwich Casserole</h2>
-                        <div><a href="http://google.com"><img src="{{ asset('assets/images/mystery_person.png') }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> </a>Recipe by: Martiny</div>
-                        <div style="text-align: left;margin-top:20px;"><i>"All the ingredients for a meatball sandwich are here, just assembled in a different manner. This recipe is always a hit at our house. We NEVER have any leftovers, it is so good!"</i></div>
+                        <h2 style="color:orange">{{$recipe->name}}</h2>
+                        <div><a href="{{ url('/user', $recipe->userpostid) }}"><img src="{{ asset('assets/images/user_pic/'.$usercheck->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> </a>Recipe by: {{$usercheck->username}}</div>
+                        <div style="text-align: left;margin-top:20px;"><i>{{$recipe->Description}}</i></div>
                                 <div><ul class="navbar_action" >
                                        
                                         <li style="display: table-cell;"><a href="http://google.com"><img src="{{ asset('assets/images/user-group-512.png') }}"  />follow</a></li>
@@ -23,12 +23,13 @@
                             </table> </div>
                     </div>
                 <div  style="float:right;width:39%;">
-                    <img style="height:auto;width:100%;" src="{{ asset('assets/images/article_pic/1826.jpg') }}" />
+                    <img style="height:auto;width:100%;" src="{{ asset('assets/images/article_pic/'.$recipe->img) }}" />
                 </div>
                 </div>
             </center>
             <div class="clear" style="height:5px; background: #23527c;"></div>
-            
+            <div class="recipe_detail_body"><div style="float:right;"><img src="{{ asset('assets/images/serving.png') }}" style="width:30px;vertical-align: -10px;" /> 5 servings</div></div>
+            <div class="clear"></div>
             <div class="recipe_detail_body">
                 <h1 style="border-bottom: 1px solid #dedede;">Ingredients</h1>
                 <div class="ingre_box">
