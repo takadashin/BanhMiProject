@@ -112,8 +112,24 @@ transition:all 0.3s ease;
     color:#7D7D7D;
 }
 .ingre_step p{display: inline; margin-left:5px;}
-
-
-a.log{color: darkorange}
-div.login{height: 10px; alignment-adjust: middle; float: right; margin-left: 10px}
 .ingre_step img{width:60%;height:auto;}
+
+/*Linh Login */
+a.log{color: darkkhaki}
+div.login{height: 10px; alignment-adjust: middle; float: right; margin-left: 10px}
+.login-error-msg{color: red;margin-left: 20px;}
+.login-box{
+    background-color: darkkhaki;
+    margin: 140px 400px 140px 471px;
+    padding-left: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.login-field-space{
+    margin: 20px;
+}
+
+.login-submit{
+    margin-left: 202px;
+}
+/*Linh Login */
