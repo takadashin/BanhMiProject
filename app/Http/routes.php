@@ -19,7 +19,13 @@ Route::get('recipe/{id}','RecipeController@detail');
 Route::get('/', function () {
     return view('pages.home');
 });
-Route::get('auth/twitterLogin', 'Auth\AuthController@twitterLogin');
-Route::get('auth/logout', 'Auth\AuthController@logout');
+
 
 Route::post('commentsubmit','CommentController@create');
+
+// ------ Linh
+Route::get('twitterLogin', 'SessionController@twitterLogin');
+Route:resource('sessions', 'SessionController');
+Route::get('login', 'SessionController@create');
+Route::get('logout', 'SessionController@destroy');
+// ------ Linh
