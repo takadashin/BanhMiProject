@@ -15,8 +15,14 @@ class recipe extends Model{
     
     public function recept_ingre()
     {
-        return $this->hasMany('App\recept_ingre');
+        return $this->hasMany('App\recept_ingre','recipeid');
     }
-  
-    
+    public function step()
+    {
+        return $this->hasMany('App\step','recipeid');
+    }
+    public function comment()
+    {
+        return $this->hasMany('App\comment','recipeid');
+    }
 }

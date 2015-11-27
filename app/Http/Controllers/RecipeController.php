@@ -34,6 +34,7 @@ class RecipeController extends Controller {
     }
     
      public function  recipe(){
+         
         $cds = DB::table('recipe')
         ->join('user', 'recipe.userpostid', '=', 'user.id')
         ->select(DB::raw('recipe.* ,user.avatar,user.username,'
@@ -42,12 +43,17 @@ class RecipeController extends Controller {
                 . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
         ->orderBy('recipe.datepost')->take(16)
         ->get();
+         
+        
         return view('pages.recipe', ['recipe' => $cds]);
     } 
     public function  detail($id){
         $recipe = recipe::find($id);
         $userstuff = $recipe->user;
-        return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff]);
+        $detailIngres = $recipe->recept_ingre;
+        $steps = $recipe->step;
+        $comments = $recipe->comment;
+        return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff,'ingre' => $detailIngres,'steps' => $steps,'comments'=>$comments]);
     } 
     
     

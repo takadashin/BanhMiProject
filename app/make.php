@@ -2,7 +2,7 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 
-class make extends Model{
+class comment extends Model{
     
     
     

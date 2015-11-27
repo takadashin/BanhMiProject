@@ -28,35 +28,37 @@
                 </div>
             </center>
             <div class="clear" style="height:5px; background: #23527c;"></div>
-            <div class="recipe_detail_body"><div style="float:right;"><img src="{{ asset('assets/images/serving.png') }}" style="width:30px;vertical-align: -10px;" /> 5 servings</div></div>
+            <div class="recipe_detail_body"><div style="float:right;"><img src="{{ asset('assets/images/serving.png') }}" style="width:30px;vertical-align: -10px;" /> {{$recipe->servings}} servings</div></div>
             <div class="clear"></div>
             <div class="recipe_detail_body">
                 <h1 style="border-bottom: 1px solid #dedede;">Ingredients</h1>
                 <div class="ingre_box">
-                    <div class="ingre_item"><img src="{{ asset('assets/images/ingre_icon.png') }}" />1 spoon pepper</div>
-                    <div class="ingre_item"><img src="{{ asset('assets/images/ingre_icon.png') }}" />2 spoon sugar</div>
-                    <div class="ingre_item"><img src="{{ asset('assets/images/ingre_icon.png') }}" />1 chicken leg</div>
-                    <div class="ingre_item"><img src="{{ asset('assets/images/ingre_icon.png') }}" />1 spoon pepper</div>
-                    <div class="ingre_item"><img src="{{ asset('assets/images/ingre_icon.png') }}" />2 spoon sugar</div>
-                    <div class="ingre_item"><img src="{{ asset('assets/images/ingre_icon.png') }}" />1 chicken leg</div>
+                    @foreach($ingre as $row)
+                    <div class="ingre_item"><img src="{{ asset('assets/images/ingre_icon.png') }}" />{{$row->detail}}</div>
+                    @endforeach
                     <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
                 <h1 style="border-bottom: 1px solid #dedede;">Directions</h1>
                 <div class="ingre_box">
-                    <div class="ingre_step"><i>1</i><p>This is a step</p></div>
-                    <div class="ingre_step"><i>2</i><p>This is a step</p></div>
-                    <div class="ingre_step"><i>3</i><p>This is a step</p></div>
-                    <div class="ingre_step"><i>4</i><p>This is a step</p></div>
+                    <?php $count = 0; ?>
+                    @foreach($steps as $row)
+                    <div class="ingre_step"><i>{{$count++}}</i><p>{{$row->content}}</p>
+                        <div style="text-align: center;"><img src="{{ asset('assets/images/article_pic/'.$row->picture) }}" /></div>
+                    </div>
+                    
+                    @endforeach
                 </div>
                 <div class="clear"></div>
                 <h1 style="border-bottom: 1px solid #dedede;">Comments</h1>
                  <div class="ingre_box">
+                     @foreach($comment as $row)
                     <div class="ingre_step"><img src="{{ asset('assets/images/mystery_person.png') }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> comment
                         <div style="border-top:1px solid #dedede;margin:15px;">
                             Awesome
                         </div>
                     </div>
+                     @endforeach
                    
                 </div>
             </div>
