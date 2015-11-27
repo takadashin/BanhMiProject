@@ -51,11 +51,17 @@
                 </div>
                 <div class="clear"></div>
                 <h1 style="border-bottom: 1px solid #dedede;">Comments</h1>
-                 {!! Form::open(['url' => 'cds']) !!}
-                  {!! Form::textarea('desc1', null, array('id'=>'editor')) !!}
+                  {!! Form::open(['url' => 'commentsubmit']) !!}
+                  {!! Form::textarea('description', null, array('id'=>'commenteditor')) !!}
+                  {!! Form::hidden('recipeid',$recipe->id ) !!}
+                  {!! Form::hidden('userid', 1 ) !!}
+                  <div style="float:right;">
+                    {!! Form::submit('Post comment') !!}
+                   </div>
+                  
                   {!! Form::close() !!}
-                  <script type="text/javascript">
-                    CKEDITOR.replace( 'editor' );
+                <script type="text/javascript">
+                    CKEDITOR.replace( 'commenteditor' );
                 </script>
                  <div class="ingre_box">
                      @foreach($comments as $row)

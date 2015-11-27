@@ -21,3 +21,5 @@ Route::get('/', function () {
 });
 Route::get('auth/twitterLogin', 'Auth\AuthController@twitterLogin');
 Route::get('auth/logout', 'Auth\AuthController@logout');
+
+Route::post('commentsubmit','CommentController@create');
