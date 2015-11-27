@@ -51,6 +51,12 @@
                 </div>
                 <div class="clear"></div>
                 <h1 style="border-bottom: 1px solid #dedede;">Comments</h1>
+                 {!! Form::open(['url' => 'cds']) !!}
+                  {!! Form::textarea('desc1', null, array('id'=>'editor')) !!}
+                  {!! Form::close() !!}
+                  <script type="text/javascript">
+                    CKEDITOR.replace( 'editor' );
+                </script>
                  <div class="ingre_box">
                      @foreach($comments as $row)
                     <div class="ingre_step"><img src="{{ asset('assets/images/user_pic/'.$row->user->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> comment
@@ -61,6 +67,7 @@
                      @endforeach
                    
                 </div>
+                 
             </div>
             <div class="clear"></div>
         </div>
