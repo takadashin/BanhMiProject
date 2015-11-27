@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Recipe;
+use App\Comment;
 
 use Illuminate\Http\Request;
 
@@ -52,7 +53,7 @@ class RecipeController extends Controller {
         $userstuff = $recipe->user;
         $detailIngres = $recipe->recept_ingre;
         $steps = $recipe->step;
-        $comments = $recipe->comment;
+        $comments = comment::where('recipeid', '=', $id)->get();
         return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff,'ingre' => $detailIngres,'steps' => $steps,'comments'=>$comments]);
     } 
     

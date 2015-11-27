@@ -52,10 +52,10 @@
                 <div class="clear"></div>
                 <h1 style="border-bottom: 1px solid #dedede;">Comments</h1>
                  <div class="ingre_box">
-                     @foreach($comment as $row)
-                    <div class="ingre_step"><img src="{{ asset('assets/images/mystery_person.png') }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> comment
+                     @foreach($comments as $row)
+                    <div class="ingre_step"><img src="{{ asset('assets/images/user_pic/'.$row->user->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> comment
                         <div style="border-top:1px solid #dedede;margin:15px;">
-                            Awesome
+                           {{$row->content}}
                         </div>
                     </div>
                      @endforeach
