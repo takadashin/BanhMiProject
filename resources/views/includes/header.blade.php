@@ -1,13 +1,13 @@
 <div class="innerwrap">
-    <div class="login_box">  
-        @if(session()->has('username'))
-            Welcome  {{session()->get('username')}}
-            <a class='log' href="{{ url('/auth/logout') }}">Log out</a>
+    <div class="login_box"> 
+        @if(Auth::check())
+            Welcome  {{ Auth::user()->username }}
+            <a class='log' href="{{ url('/logout') }}">Log out</a>
         @else
-            <a href="/auth/twitterLogin">
+            <a href="/twitterLogin">
                 <img src="{{ asset('assets/images/sign-in-with-twitter-l.png') }}" width="151" height="24" border="0" />
             </a>
-        <div class='login'><a class='log' href="{{ url('/auth/logout') }}">Log In</a></div>
+        <div class='login'><a class='log' href="{{ url('/login') }}">Log In</a></div>
         @endif
     </div>
     <div class="clear"></div>

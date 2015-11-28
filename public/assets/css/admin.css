@@ -43,7 +43,7 @@ transition:all 0.3s ease;}
 .even {background: #F1F5FA !important;}
 .Datagrid a{text-decoration: none;}
 .Datagrid img{height: 15px;width:auto;vertical-align: -3px;margin-right:5px;}
-.login_box {    height: 180px;
+.login_box {    height: 222px;
     width: 400px;
     background: #fff;
     margin: auto;
@@ -62,8 +62,13 @@ transition:all 0.3s ease;}
     border: 1px solid #8F9090;
     float: right;
     clear: both;
-    margin-top: 57px;
-    margin-right: 47px;width: 80px;font-weight: bold;}
+    margin-top: 65px;
+    margin-right: 22px;width: 80px;font-weight: bold;}
 .submitbutton:hover {background: #6666ff;color:white;-o-transition: all 0.3s ease;
 	-webkit-transition: all 0.3s ease;
 transition:all 0.3s ease;}
+
+/* ----Linh */
+div.login-admin-error-msg{position: absolute; color: red;margin-top: -33px;}
+a.log{font-size: 13px !important; color: lawngreen;text-decoration: underline !important}
+/* ----Linh */

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class VoteController extends Controller {
     
-    public function recipevote($cid,$uid,$rid)
+    public function recipevote($uid,$rid)
     {
         $checklike = Vote::where('recipeid', $rid)->where('userid', $uid)->count();
         if($checklike != 0)

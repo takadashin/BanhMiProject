@@ -21,6 +21,9 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var string
      */
+    public static $TWITTER_ROLE = 'twitter';
+    public static $ADMIN_ROLE = 'admin';
+    public static $USER_ROLE = 'user';
     protected $table = 'user';
     public  $timestamps = false;
 
@@ -29,7 +32,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'address','phone','role','avatar'];
+    protected $fillable = ['username', 'email', 'password', 'address','phone','role','avatar','remember_token','confirmed'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -37,4 +40,11 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password'];
+    
+    public function isAdmin(){
+        if($this->role == User::$ADMIN_ROLE){
+            return true;
+        }
+        return false;
+    }
 }

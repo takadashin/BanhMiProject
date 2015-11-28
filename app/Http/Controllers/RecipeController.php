@@ -5,6 +5,7 @@ use App\Recipe;
 use App\Comment;
 use App\Follow;
 use App\Made;
+use App\Vote;
 use Illuminate\Http\Request;
 
 
@@ -56,7 +57,8 @@ class RecipeController extends Controller {
         $comments = comment::where('recipeid', '=', $id)->orderBy('created_at','desc')->get();
         $follow = Follow::where('followeduserid', $userstuff->id)->where('userid', 1)->count();
         $made = Made::where('recipeid', $id)->where('userid', 1)->count();
-        return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff,'ingre' => $detailIngres,'steps' => $steps,'comments'=>$comments,'follow'=>$follow,'made'=>$made]);
+        $vote = Vote::where('recipeid', $id)->where('userid', 1)->count();
+        return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff,'ingre' => $detailIngres,'steps' => $steps,'comments'=>$comments,'follow'=>$follow,'made'=>$made,'vote'=>$vote]);
     } 
     
     
