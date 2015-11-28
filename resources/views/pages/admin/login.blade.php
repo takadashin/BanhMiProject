@@ -16,8 +16,9 @@ and open the template in the editor.
             <div style="position: relative;">
                 <img src="{{ asset('assets/images/logo.png') }}" style="position: absolute; margin-left: -225px;" >
                 <div style="padding:55px;background: #B0B8D4;">
-                    {!! Form::open(['route' => 'sessions.store']) !!}
-                        <table>
+                     <div class="login-admin-error-msg">{{ Session::get('login_error') }} </div>
+                    {!! Form::open(['url' => 'admin/loginStore']) !!}
+                        <table cellspacing="10px">
                             <tr>
                                 <td>User Name</td>
                                 <td>:</td>
