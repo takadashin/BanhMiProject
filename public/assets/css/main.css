@@ -124,6 +124,8 @@ div.login{height: 10px; alignment-adjust: middle; float: right; margin-left: 10p
     padding-left: 50px;
     padding-top: 25px;
     padding-bottom: 25px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
+    border: 1px;
 }
 .login-field-space{
     margin: 20px;
