@@ -2,9 +2,9 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 
-class vote extends Model{
-    
-    protected  $table ="vote";
+class Follow extends Model{
+    protected  $table ="follow";
     public  $timestamps = false;
+    
     
 }

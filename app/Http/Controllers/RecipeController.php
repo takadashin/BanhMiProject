@@ -3,7 +3,8 @@ namespace App\Http\Controllers;
 use DB;
 use App\Recipe;
 use App\Comment;
-
+use App\Follow;
+use App\Made;
 use Illuminate\Http\Request;
 
 
@@ -42,8 +43,7 @@ class RecipeController extends Controller {
                 . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
                 . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
                 . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
-        ->orderBy('recipe.datepost')->take(16)
-        ->get();
+        ->orderBy('recipe.datepost')->paginate(9);
          
         
         return view('pages.recipe', ['recipe' => $cds]);
@@ -53,8 +53,10 @@ class RecipeController extends Controller {
         $userstuff = $recipe->user;
         $detailIngres = $recipe->recept_ingre;
         $steps = $recipe->step;
-        $comments = comment::where('recipeid', '=', $id)->get();
-        return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff,'ingre' => $detailIngres,'steps' => $steps,'comments'=>$comments]);
+        $comments = comment::where('recipeid', '=', $id)->orderBy('created_at','desc')->get();
+        $follow = Follow::where('followeduserid', $userstuff->id)->where('userid', 1)->count();
+        $made = Made::where('recipeid', $id)->where('userid', 1)->count();
+        return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff,'ingre' => $detailIngres,'steps' => $steps,'comments'=>$comments,'follow'=>$follow,'made'=>$made]);
     } 
     
     

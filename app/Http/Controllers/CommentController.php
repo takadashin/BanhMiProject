@@ -16,9 +16,13 @@ class CommentController extends Controller {
                 ]
                 );
         $inputs = $request->all();
-        Comment::create($inputs);
-        dd($inputs);
-        $id = $inputs::get('recipeid');
+        $item = new Comment;
+        $item->content = $inputs['description'];
+        $item->recipeid = $inputs['recipeid'];
+        $item->userpostid = $inputs['userid'];
+        $item->save();
+        $id = $inputs['recipeid'];
+
         return Redirect('recipe/'.$id);
     }
     

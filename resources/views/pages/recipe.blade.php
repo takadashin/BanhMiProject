@@ -34,6 +34,8 @@
                 </center>
             </div>
             @endforeach
+            <div class="clear" ></div>
+            <?php echo $recipe->render(); ?>
       
             <div class="clear" ></div>
 

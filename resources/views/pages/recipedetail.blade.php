@@ -3,22 +3,23 @@
 @section('title')
     Home Page
 @stop
-
+<?php $userid= 1; ?>
 @section('content')
-
+<script src="{{ asset('assets/javascript/ajaxcall.js')}}" type="text/javascript"></script>
     <div class="innerwrap">
         <div id="recipe_detail">
             <center>
                 <div class="recipe_detail_top">
+                    
                     <div style="float:left;text-align: center;width:60%;height:250px;overflow: hidden;position:relative;">
                         <h2 style="color:orange">{{$recipe->name}}</h2>
                         <div><a href="{{ url('/user', $recipe->userpostid) }}"><img src="{{ asset('assets/images/user_pic/'.$usercheck->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> </a>Recipe by: {{$usercheck->username}}</div>
                         <div style="text-align: left;margin-top:20px;"><i>{{$recipe->Description}}</i></div>
                                 <div><ul class="navbar_action" >
                                        
-                                        <li style="display: table-cell;"><a href="http://google.com"><img src="{{ asset('assets/images/user-group-512.png') }}"  />follow</a></li>
-                                        <li style="display: table-cell;"><a href="http://google.com"><img src="{{ asset('assets/images/spoon.png') }}"  />made</a></li>
-                                        <li style="display: table-cell;"><a href="http://google.com"><img src="{{ asset('assets/images/thumpup.png') }}"  />like</a></li>
+                                        <li style="display: table-cell;"><a <?php echo $follow>0?"class='active'":""; ?> id="followbutton" href="{{ url('/getfollow', [$recipe->userpostid,$userid,$recipe->id]) }}"><img src="{{ asset('assets/images/user-group-512.png') }}"  /> Follow</a></li>
+                                        <li style="display: table-cell;"><a <?php echo $made>0?"class='active'":""; ?> id="madebutton" href="{{ url('/getmade', [$userid,$recipe->id]) }}"><img src="{{ asset('assets/images/spoon.png') }}"  /> Made</a></li>
+                                        <li style="display: table-cell;"><a <?php echo $vote>0?"class='active'":""; ?> id="votebutton" href="{{ url('/getvote', [$userid,$recipe->id]) }}"><img src="{{ asset('assets/images/thumpup.png') }}"  /> Like</a></li>
                                       
                             </table> </div>
                     </div>
@@ -54,20 +55,21 @@
                   {!! Form::open(['url' => 'commentsubmit']) !!}
                   {!! Form::textarea('description', null, array('id'=>'commenteditor')) !!}
                   {!! Form::hidden('recipeid',$recipe->id ) !!}
-                  {!! Form::hidden('userid', 1 ) !!}
+                  {!! Form::hidden('userid', $userid ) !!}
                   <div style="float:right;">
-                    {!! Form::submit('Post comment') !!}
+                    {!! Form::submit('Post comment',['class'=> 'main_button']) !!}
                    </div>
                   
                   {!! Form::close() !!}
                 <script type="text/javascript">
                     CKEDITOR.replace( 'commenteditor' );
                 </script>
+                <div class="clear"></div>
                  <div class="ingre_box">
                      @foreach($comments as $row)
                     <div class="ingre_step"><img src="{{ asset('assets/images/user_pic/'.$row->user->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> comment
                         <div style="border-top:1px solid #dedede;margin:15px;">
-                           {{$row->content}}
+                          <?php echo $row->content; ?>
                         </div>
                     </div>
                      @endforeach

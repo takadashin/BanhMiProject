@@ -23,3 +23,6 @@ Route::get('auth/twitterLogin', 'Auth\AuthController@twitterLogin');
 Route::get('auth/logout', 'Auth\AuthController@logout');
 
 Route::post('commentsubmit','CommentController@create');
+Route::get('getfollow/{cid}/{uid}/{rid}', 'FollowController@followchef');
+Route::get('getmade/{uid}/{rid}', 'MadeController@recipemade');
+Route::get('getvote/{uid}/{rid}', 'VoteController@recipevote');
