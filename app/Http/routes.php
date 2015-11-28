@@ -24,8 +24,13 @@ Route::get('/', function () {
 Route::post('commentsubmit','CommentController@create');
 
 // ------ Linh
+Route::get('/admin',['middleware' => ['auth', 'admin'], function () {
+    return view('pages.admin.index');
+}]);
 Route::get('twitterLogin', 'SessionController@twitterLogin');
 Route:resource('sessions', 'SessionController');
 Route::get('login', 'SessionController@create');
 Route::get('logout', 'SessionController@destroy');
+Route::get('admin/login', 'SessionController@adminLogin');
+Route::post('admin/loginStore', 'SessionController@adminStore');
 // ------ Linh
