@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'address','phone','role','avatar','remember_token'];
+    protected $fillable = ['username', 'email', 'password', 'address','phone','role','avatar','remember_token','confirmed'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -40,4 +40,11 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password'];
+    
+    public function isAdmin(){
+        if($this->role == User::$ADMIN_ROLE){
+            return true;
+        }
+        return false;
+    }
 }
