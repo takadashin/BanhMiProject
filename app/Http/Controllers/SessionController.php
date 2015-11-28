@@ -27,32 +27,41 @@ class SessionController extends Controller {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /* show page user login*/
     public function create() {
         return view('pages.login');
     }
+    
+    /* show page admin login*/
+    public function adminLogin() {
+        return view('pages.admin.login');
+    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    /* admin login */
+
+    public function adminStore(Request $request) {
+        $inputs = $request->all();
+
+        Auth::attempt(array("username" => $inputs['username'], "password" => $inputs['password'], "role" => User::$ADMIN_ROLE, "confirmed" => "1"));
+        if (Auth::check())
+            return redirect("/admin");
+        else
+            return Redirect::back()->with("login_error", "Invalid Username and Password");
+    }
+
+    /* user login */
+
     public function store(Request $request) {
         $inputs = $request->all();
         $user = User::firstOrNew(array("username" => $inputs['username']));
         if ($user->id == null || $user->role == User::$TWITTER_ROLE) {
-            return Redirect::back()->with("login_error","Username is not exist");
+            return Redirect::back()->with("login_error", "Username is not exist");
         }
-        Auth::attempt(array("username" => $inputs['username'], "password" => $inputs['password']));
+        Auth::attempt(array("username" => $inputs['username'], "password" => $inputs['password'],"confirmed" => "1"));
         if (Auth::check())
             return redirect("/");
         else
-            return Redirect::back()->with("login_error","Invalid Password");
+            return Redirect::back()->with("login_error", "Invalid Password");
     }
 
     public function twitterLogin() {
@@ -76,7 +85,7 @@ class SessionController extends Controller {
 
                 $user = User::firstOrNew(array("username" => $access_token['screen_name']));
                 if ($user->id == null) {
-                    $user = User::Create(array('username' => $access_token['screen_name'], 'password' => Hash::make(' '), 'role' => User::$TWITTER_ROLE));
+                    $user = User::Create(array('username' => $access_token['screen_name'], 'password' => Hash::make(' '), 'role' => User::$TWITTER_ROLE, 'confirmed' => '1'));
                 }
                 Auth::login($user);
                 return redirect("/");
@@ -147,7 +156,11 @@ class SessionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy() {
+        $admin = Auth::user()->isAdmin();
         Auth::logout();
+        if ($admin) {
+            return redirect("/admin");
+        }
         return redirect("/");
     }
 
