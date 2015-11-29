@@ -52,7 +52,7 @@ transition:all 0.3s ease; }
 .article {float:left;width:23%;background: #fff;border: 1px solid #dedede;border-radius: 5px;min-height: 275px;margin-right:10px;-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
 	-webkit-transition: all 0.3s ease;
-transition:all 0.3s ease; }
+transition:all 0.3s ease; margin-bottom: 10px;}
 .article:hover {border: 1px solid #fff;-moz-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
 	-webkit-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
 	box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px; }
