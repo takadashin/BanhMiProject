@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Home Page
+    Recipe detail Page
 @stop
 <?php $userid= 1; ?>
 @section('content')

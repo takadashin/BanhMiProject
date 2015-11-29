@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Home Page
+    Recipe Page
 @stop
 
 @section('content')

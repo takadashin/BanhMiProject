@@ -6,6 +6,8 @@ use App\Comment;
 use App\Follow;
 use App\Made;
 use App\Vote;
+use App\Step;
+use App\Recept_ingre;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -23,7 +25,7 @@ class RecipeController extends Controller {
                 . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
                 . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
                 . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
-        ->orderBy('recipe.datepost')->take(16)
+        ->orderBy('recipe.datepost', 'DESC')->take(16)
         ->get();
         $db =  DB::table('recipe')
         ->join('user', 'recipe.userpostid', '=', 'user.id')
@@ -44,10 +46,34 @@ class RecipeController extends Controller {
                 . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
                 . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
                 . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
-        ->orderBy('recipe.datepost')->paginate(9);
+        ->orderBy('recipe.datepost', 'DESC')->paginate(9);
          
         
         return view('pages.recipe', ['recipe' => $cds]);
+    } 
+     public function  adminrecipe(){
+         
+        $cds = Recipe::orderBy('datepost')->paginate(9);
+         
+        
+        return view('pages.admin.recipe', ['recipe' => $cds]);
+    } 
+     public function  deleterecipe($id){
+        if(Auth::user()->isAdmin())
+        {
+            Vote::where('recipeid', $id)->delete();
+            Made::where('recipeid', $id)->delete();
+            Step::where('recipeid', $id)->delete();
+            Recept_ingre::where('recipeid', $id)->delete();
+            comment::where('recipeid', '=', $id)->delete();
+            recipe::find($id)->delete();
+            
+
+            return Redirect('admin/recipe');
+        }
+        else {
+            return Redirect('index');
+        }
     } 
     public function  detail($id){
         $uid;

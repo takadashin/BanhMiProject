@@ -19,7 +19,7 @@
                 </div>
                 <div id="control_box">
                     <ul>
-                        <li class="active"><a>Recipe</a></li>
+                        <li class="active"><a href="{{ url('admin/recipe') }}">Recipe</a></li>
                         <li><a>User</a></li> 
                         <li><a href="admin/ingredient">Ingredient</a></li> 
                     </ul>

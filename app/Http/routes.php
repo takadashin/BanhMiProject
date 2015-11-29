@@ -28,8 +28,9 @@ Route::get('getvote/{rid}', 'VoteController@recipevote');
 
 
 Route::post('commentsubmit','CommentController@create');
-
-
+Route::get('admin/recipe','RecipeController@adminrecipe');
+Route::get('admin/recipe/delete/{id}','RecipeController@deleterecipe');
+Route::get('admin/recipe/edit/{id}','RecipeController@editrecipe');
 // ------ Linh
 Route::get('/admin',['middleware' => ['auth', 'admin'], function () {
     return view('pages.admin.index');
