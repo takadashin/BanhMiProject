@@ -70,7 +70,7 @@ transition:all 0.3s ease;}
 	-webkit-transition: all 0.3s ease;
 transition:all 0.3s ease;}
 
-/* ----Linh */
+/* --------------------------Linh -----------------------------------------------------------*/
 div.login-admin-error-msg{position: absolute; color: red;margin-top: -33px;}
 a.log{font-size: 13px !important; color: lawngreen;text-decoration: underline !important}
 #control_box a{color:white;}
@@ -239,4 +239,4 @@ a.log{font-size: 13px !important; color: lawngreen;text-decoration: underline !i
   text-shadow: none;
   color: transparent;
 }
-/* ----Linh */
+/* ----------------------------------------Linh-------------------------------------------- */
