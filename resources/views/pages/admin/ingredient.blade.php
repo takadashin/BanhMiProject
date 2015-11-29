@@ -26,7 +26,7 @@
     </section>
     <section id="data_section" class="ingredient">
       <ul class="ingredient-controls">
-        <li><img src="assets/images/add.png" width="14px" onClick="show_form('add_ingredient');" /></li>
+        <li><img src="{{ asset("assets/images/add.png") }}" width="14px" onClick="show_form('add_ingredient');" /></li>
       </ul>
       <ul id="ingredient_list" class="ingredient-list">
       	@foreach($ingredients as $ingredient)
@@ -36,6 +36,6 @@
     </section>  
   </div>
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
- <script src="assets/js/ingredient.js" type="text/javascript"></script>
+ <script src="{{ asset("assets/js/ingredient.js") }}" type="text/javascript"></script>
 @stop
 
