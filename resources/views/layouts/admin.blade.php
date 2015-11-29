@@ -21,7 +21,7 @@
                     <ul>
                         <li class="active"><a>Recipe Post</a></li>
                         <li><a>User</a></li> 
-                        <li><a href="ingredient">Ingredient</a></li> 
+                        <li><a href="admin/ingredient">Ingredient</a></li> 
                     </ul>
                 </div>
             </div>
