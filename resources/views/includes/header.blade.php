@@ -25,7 +25,7 @@
             <ul>
                 <li><a href="/index">Home page</a></li>
                 <li><a href="/recipe">Recipe</a></li>
-                <li><a href="/chef">Chef</a></li>
+                <li><a href="/postRecipe">Create A Recipe</a></li>
                 <li><a>About Us</a></li>
             </ul>
             <div style="float: right;height:100%;width:16px;background: url(images/footer_menu.png) repeat-x;"></div>
