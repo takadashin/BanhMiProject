@@ -22,9 +22,9 @@ Route::get('/', function () {
 
 
 Route::post('commentsubmit','CommentController@create');
-Route::get('getfollow/{cid}/{uid}/{rid}', 'FollowController@followchef');
-Route::get('getmade/{uid}/{rid}', 'MadeController@recipemade');
-Route::get('getvote/{uid}/{rid}', 'VoteController@recipevote');
+Route::get('getfollow/{cid}/{rid}', 'FollowController@followchef');
+Route::get('getmade/{rid}', 'MadeController@recipemade');
+Route::get('getvote/{rid}', 'VoteController@recipevote');
 
 
 Route::post('commentsubmit','CommentController@create');

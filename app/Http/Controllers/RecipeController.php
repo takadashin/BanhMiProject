@@ -7,7 +7,7 @@ use App\Follow;
 use App\Made;
 use App\Vote;
 use Illuminate\Http\Request;
-
+use Auth;
 
 class RecipeController extends Controller {
     public function  index(){
@@ -50,14 +50,21 @@ class RecipeController extends Controller {
         return view('pages.recipe', ['recipe' => $cds]);
     } 
     public function  detail($id){
+        $uid;
+       if(Auth::user() == null)
+            $uid = -1;
+        else
+        {
+            $uid = Auth::user()->id;
+        }
         $recipe = recipe::find($id);
         $userstuff = $recipe->user;
         $detailIngres = $recipe->recept_ingre;
         $steps = $recipe->step;
         $comments = comment::where('recipeid', '=', $id)->orderBy('created_at','desc')->get();
-        $follow = Follow::where('followeduserid', $userstuff->id)->where('userid', 1)->count();
-        $made = Made::where('recipeid', $id)->where('userid', 1)->count();
-        $vote = Vote::where('recipeid', $id)->where('userid', 1)->count();
+        $follow = Follow::where('followeduserid', $userstuff->id)->where('userid', $uid)->count();
+        $made = Made::where('recipeid', $id)->where('userid', $uid)->count();
+        $vote = Vote::where('recipeid', $id)->where('userid', $uid)->count();
         return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff,'ingre' => $detailIngres,'steps' => $steps,'comments'=>$comments,'follow'=>$follow,'made'=>$made,'vote'=>$vote]);
     } 
     

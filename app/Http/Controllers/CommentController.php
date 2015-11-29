@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Comment;
-
+use Auth;
 use Illuminate\Http\Request;
 
 
@@ -10,7 +10,11 @@ class CommentController extends Controller {
     
     public function create(Request $request)
     {
-        $this->validate($request,
+        if(Auth::user() == null)
+            return Redirect('login');
+        else
+        {
+            $this->validate($request,
                 [
                   'description' => 'required|min:10',
                 ]
@@ -19,11 +23,12 @@ class CommentController extends Controller {
         $item = new Comment;
         $item->content = $inputs['description'];
         $item->recipeid = $inputs['recipeid'];
-        $item->userpostid = $inputs['userid'];
+        $item->userpostid = Auth::user()->id;;
         $item->save();
         $id = $inputs['recipeid'];
 
         return Redirect('recipe/'.$id);
+        }
     }
     
 }
