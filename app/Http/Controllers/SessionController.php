@@ -27,12 +27,14 @@ class SessionController extends Controller {
         //
     }
 
-    /* show page user login*/
+    /* show page user login */
+
     public function create() {
         return view('pages.login');
     }
-    
-    /* show page admin login*/
+
+    /* show page admin login */
+
     public function adminLogin() {
         return view('pages.admin.login');
     }
@@ -57,7 +59,7 @@ class SessionController extends Controller {
         if ($user->id == null || $user->role == User::$TWITTER_ROLE) {
             return Redirect::back()->with("login_error", "Username is not exist");
         }
-        Auth::attempt(array("username" => $inputs['username'], "password" => $inputs['password'],"confirmed" => "1"));
+        Auth::attempt(array("username" => $inputs['username'], "password" => $inputs['password'], "confirmed" => "1"));
         if (Auth::check())
             return redirect("/");
         else
@@ -156,7 +158,7 @@ class SessionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy() {
-        if(Auth::user() != null){
+        if (Auth::user() != null) {
             $admin = Auth::user()->isAdmin();
             Auth::logout();
             if ($admin) {
