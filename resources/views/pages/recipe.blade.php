@@ -31,7 +31,7 @@
 
                         <div style="margin-top:10px;text-align: right;">Made by 
                             <a href="{{ url('/user', $row->userpostid) }}"><img src="{{ asset('assets/images/user_pic/'.$row->avatar) }}" 
-                          onError="this.onerror=null;this.src='{{ asset('assets/images/user_pic/minicons2-14-512.png') }}';" style="width: 46px;height:auto;vertical-align: -19px;" /> </a></div>
+                          onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';" style="width: 46px;height:auto;vertical-align: -19px;" /> </a></div>
                     </div>
                 </center>
             </div>

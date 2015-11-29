@@ -13,7 +13,7 @@
                     
                     <div style="float:left;text-align: center;width:60%;height:250px;overflow: hidden;position:relative;">
                         <h2 style="color:orange">{{$recipe->name}}</h2>
-                        <div><a href="{{ url('/user', $recipe->userpostid) }}"><img onError="this.onerror=null;this.src='{{ asset('assets/images/user_pic/minicons2-14-512.png') }}';" src="{{ asset('assets/images/user_pic/'.$usercheck->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> </a>Recipe by: {{$usercheck->username}}</div>
+                        <div><a href="{{ url('/user', $recipe->userpostid) }}"><img onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';" src="{{ asset('assets/images/user_pic/'.$usercheck->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> </a>Recipe by: {{$usercheck->username}}</div>
                         <div style="text-align: left;margin-top:20px;"><i>{{$recipe->Description}}</i></div>
                                 <div><ul class="navbar_action" >
                                        
@@ -66,7 +66,7 @@
                 <div class="clear"></div>
                  <div class="ingre_box">
                      @foreach($comments as $row)
-                    <div class="ingre_step"><img onError="this.onerror=null;this.src='{{ asset('assets/images/user_pic/minicons2-14-512.png') }}';" src="{{ asset('assets/images/user_pic/'.$row->user->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> {{$row->user->username}} comment
+                    <div class="ingre_step"><img onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';" src="{{ asset('assets/images/user_pic/'.$row->user->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> {{$row->user->username}} comment
                         <div style="border-top:1px solid #dedede;margin:15px;">
                           <?php echo $row->content; ?>
                         </div>
