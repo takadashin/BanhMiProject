@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Follow;
-
+use Auth;
 use Illuminate\Http\Request;
 
 
@@ -10,6 +10,7 @@ class FollowController extends Controller {
     
     public function followchef($cid,$uid,$rid)
     {
+        //return Auth::user()->id;
         $checkfollow = Follow::where('followeduserid', $cid)->where('userid', $uid)->count();
         if($checkfollow != 0)
         {

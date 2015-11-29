@@ -24,12 +24,14 @@
                     </div>
                     <div><hr></div>
                     <div class="article_content foot_content" >
-                        <a href="http://google.com"><img src="{{ asset('assets/images/user-group-512.png') }}"  style="width: 15px;height:15px;vertical-align: -3px;" /> {{$row->countfollow}}</a>
-                        <a href="http://google.com"><img src="{{ asset('assets/images/spoon.jpg') }}"  style="width: 15px;height:15px;vertical-align: -3px;" /> {{$row->countmade}}</a>
-                        <a href="http://google.com"><img src="{{ asset('assets/images/thumpup.png') }}"  style="width: 15px;height:15px;vertical-align: -3px;" /> {{$row->countlike}}</a>
+                        <a><img src="{{ asset('assets/images/user-group-512.png') }}"  style="width: 15px;height:15px;vertical-align: -3px;" /> {{$row->countfollow}}</a>
+                        <a><img src="{{ asset('assets/images/spoon.jpg') }}"  style="width: 15px;height:15px;vertical-align: -3px;" /> {{$row->countmade}}</a>
+                        <a><img src="{{ asset('assets/images/thumpup.png') }}"  style="width: 15px;height:15px;vertical-align: -3px;" /> {{$row->countlike}}</a>
+                    
 
                         <div style="margin-top:10px;text-align: right;">Made by 
-                            <a href="{{ url('/user', $row->userpostid) }}"><img src="{{ asset('assets/images/user_pic/'.$row->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> </a></div>
+                            <a href="{{ url('/user', $row->userpostid) }}"><img src="{{ asset('assets/images/user_pic/'.$row->avatar) }}" 
+                          onError="this.onerror=null;this.src='{{ asset('assets/images/user_pic/minicons2-14-512.png') }}';" style="width: 46px;height:auto;vertical-align: -19px;" /> </a></div>
                     </div>
                 </center>
             </div>
