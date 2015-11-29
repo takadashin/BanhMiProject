@@ -156,10 +156,12 @@ class SessionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy() {
-        $admin = Auth::user()->isAdmin();
-        Auth::logout();
-        if ($admin) {
-            return redirect("/admin");
+        if(Auth::user() != null){
+            $admin = Auth::user()->isAdmin();
+            Auth::logout();
+            if ($admin) {
+                return redirect("/admin");
+            }
         }
         return redirect("/");
     }
