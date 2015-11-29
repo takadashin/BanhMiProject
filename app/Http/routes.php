@@ -30,12 +30,20 @@ Route::get('getvote/{uid}/{rid}', 'VoteController@recipevote');
 Route::post('commentsubmit','CommentController@create');
 
 
+// ------ Linh
 Route::get('/admin',['middleware' => ['auth', 'admin'], function () {
     return view('pages.admin.index');
 }]);
 Route::get('twitterLogin', 'SessionController@twitterLogin');
 Route:resource('sessions', 'SessionController');
-Route::get('login', 'SessionController@create');
+Route::get('login',['middleware' => 'guest','uses' => 'SessionController@create']);
 Route::get('logout', 'SessionController@destroy');
-Route::get('admin/login', 'SessionController@adminLogin');
+Route::get('admin/login', ['middleware' => 'guest','uses' => 'SessionController@adminLogin']);
 Route::post('admin/loginStore', 'SessionController@adminStore');
+
+Route::controller('ingredient', 'IngredientController');
+Route::get('admin/ingredient', ['middleware' => ['auth','admin'],  function(){
+    return view('pages.admin.ingredient');
+}]);
+// ------ Linh
+
