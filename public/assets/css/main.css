@@ -158,3 +158,12 @@ transition:all 0.3s ease}
     margin-left: 202px;
 }
 
+/*************Huyen****************/
+.article_about {float:left;background: #fff;border: 1px solid #dedede;border-radius: 5px;min-height: 400px;margin-right:10px;-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+transition:all 0.3s ease; }
+
+.errors { color: #C40D0D;font-weight: bold;}
+.success { color: #2ca02c;}
+

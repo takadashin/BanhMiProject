@@ -1,13 +1,14 @@
 <div class="innerwrap">
     <div class="login_box"> 
         @if(Auth::check())
-            Welcome  {{ Auth::user()->username }}
+            Welcome  <a href="{{ url('/userprofile') }}">{{ Auth::user()->username }}</a>
             <a class='log' href="{{ url('/logout') }}">Log out</a>
         @else
             <a href="/twitterLogin">
                 <img src="{{ asset('assets/images/sign-in-with-twitter-l.png') }}" width="151" height="24" border="0" />
             </a>
         <div class='login'><a class='log' href="{{ url('/login') }}">Log In</a></div>
+        <div class='login'><a class='log' href="{{ url('/register') }}">Sign Up</a></div>
         @endif
     </div>
     <div class="clear"></div>
@@ -26,7 +27,8 @@
                 <li><a href="/index">Home page</a></li>
                 <li><a href="/recipe">Recipe</a></li>
                 <li><a href="/postRecipe">Create A Recipe</a></li>
-                <li><a>About Us</a></li>
+                <li><a href="/chef">Chef</a></li>
+                <li><a href="/about">About Us</a></li>
             </ul>
             <div style="float: right;height:100%;width:16px;background: url(images/footer_menu.png) repeat-x;"></div>
 
