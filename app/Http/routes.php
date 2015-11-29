@@ -41,9 +41,6 @@ Route::get('logout', 'SessionController@destroy');
 Route::get('admin/login', ['middleware' => 'guest','uses' => 'SessionController@adminLogin']);
 Route::post('admin/loginStore', 'SessionController@adminStore');
 
-Route::controller('ingredient', 'IngredientController');
-Route::get('admin/ingredient', ['middleware' => ['auth','admin'],  function(){
-    return view('pages.admin.ingredient');
-}]);
+Route::controller('admin/ingredient', 'IngredientController');
 // ------ Linh
 
