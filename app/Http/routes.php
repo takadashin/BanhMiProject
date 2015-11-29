@@ -44,3 +44,31 @@ Route::post('admin/loginStore', 'SessionController@adminStore');
 Route::controller('admin/ingredient', 'IngredientController');
 // ------ Linh
 
+
+// ------ Huyen
+Route::get('about', function () {
+    return view('pages.about');
+});
+
+Route::post('about', 'UserController@sendContact');
+
+Route::get('register', function () { 
+    return view('pages.register');
+});
+
+Route::post('register', 'UserController@createUser');
+
+Route::get('register/verify/{confirmationCode}','UserController@confirm');
+
+Route::get('register/confirmation', function () {
+    return view('pages.confirmation');
+});
+
+Route::get('chef','UserController@listChef');
+
+Route::get('userprofile','UserController@showProfile');
+
+Route::post('userprofile', 'UserController@editProfile');
+
+Route::delete('userprofile/delete', 'UserController@deleteRecipe');
+// ------ Huyen
