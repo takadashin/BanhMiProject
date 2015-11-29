@@ -8,7 +8,10 @@ use Request;
 class IngredientController extends Controller{
     public $restful = true;
 
-
+    public function __construct() {
+       $this->middleware('admin');
+    }
+  
     public function getIndex() {
         $ingredients = Ingredient::all();
         return view("pages.admin.ingredient")
