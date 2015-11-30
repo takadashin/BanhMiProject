@@ -140,7 +140,11 @@ transition:all 0.3s ease}
 .pagination .active {background: orange;color:white;}
 .navbar_action .active {background: orange;}
 
+/*------------------------------------ Linh ------------------------------------------ */
+a.log{color: darkkhaki}
+div.login{height: 10px; alignment-adjust: middle; float: right; margin-left: 10px}
 .login-error-msg{color: red;margin-left: 20px;}
+.login-admin-error-msg{color: red;margin-bottom: 5px;}
 .login-box{
     background-color: darkkhaki;
     margin: 140px 400px 140px 471px;
@@ -153,11 +157,74 @@ transition:all 0.3s ease}
 .login-field-space{
     margin: 20px;
 }
-
 .login-submit{
     margin-left: 202px;
 }
+/*recipe*/
+div.grey {
+    background-color: #f8f8f8;
+}
 
+div.input-wrapper {
+    position: relative;
+    padding: 15px 20px 20px 15px;
+    margin-bottom: 20px;
+}
+.recipe-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.375em;
+    margin: .3em 0;
+}
+.recipe-input {
+    width: 100%;
+}
+a.addAnotherIngredient {
+    font-size: 15px;
+    color: #ff0033;
+}
+.addAnotherIngredient img{
+    margin-right: 10px;
+}
+.input-cell {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin-right: -4px;
+    padding: 0 10px;
+}
+.input-row {
+    margin-bottom: 3.8px;
+}
+.input-cell p {
+    margin-bottom: 5px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+#ingredients .input-row .headercell-1{
+    margin-right: 172px;
+}
+.input-cell select {
+    width: 230px;
+    height: 23px;
+}
+.input-cell input {
+    width: 500px;
+    height: 23px;
+}
+div#ingredients{
+    margin-bottom: 20px;
+}
+div #button{
+    text-align: right;
+}
+div #button input{
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+/*recipe*/
+/*------------------------ Linh ------------------------------------------*/
 /*************Huyen****************/
 .article_about {float:left;background: #fff;border: 1px solid #dedede;border-radius: 5px;min-height: 400px;margin-right:10px;-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
