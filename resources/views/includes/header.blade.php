@@ -1,7 +1,7 @@
 <div class="innerwrap">
     <div class="login_box"> 
         @if(Auth::check())
-            Welcome  <a href="{{ url('/userprofile') }}">{{ Auth::user()->username }}</a>
+            Welcome  <a class='log' href="{{ url('/userprofile') }}">{{ Auth::user()->username }}</a>
             <a class='log' href="{{ url('/logout') }}">Log out</a>
         @else
             <a href="/twitterLogin">
