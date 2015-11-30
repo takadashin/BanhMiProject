@@ -8,6 +8,7 @@ use App\Made;
 use App\Vote;
 use App\Step;
 use App\Recept_ingre;
+use App\Ingredient;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -54,8 +55,7 @@ class RecipeController extends Controller {
      public function  adminrecipe(){
          
         $cds = Recipe::orderBy('datepost')->paginate(9);
-         
-        
+       
         return view('pages.admin.recipe', ['recipe' => $cds]);
     } 
      public function  deleterecipe($id){
@@ -78,7 +78,14 @@ class RecipeController extends Controller {
     public function  editrecipe($id){
         
             $recipe = recipe::find($id);
-            return view('pages.admin.recipedetail',['recipe' => $recipe]);
+             $ingre = Ingredient::all();
+        $arrayingre = array();
+        foreach($ingre as $row)
+        {
+            $arrayingre[$row->id] = $row->name;
+        }
+        
+            return view('pages.admin.recipedetail',['recipe' => $recipe,'ingre' => $arrayingre]);
              
     } 
     public function  detail($id){
