@@ -21,7 +21,7 @@
                     <ul>
                         <li class="active"><a href="{{ url('admin/recipe') }}">Recipe</a></li>
                         <li><a>User</a></li> 
-                        <li><a href="admin/ingredient">Ingredient</a></li> 
+                        <li><a href="{{ url('admin/ingredient') }}">Ingredient</a></li> 
                     </ul>
                 </div>
             </div>
