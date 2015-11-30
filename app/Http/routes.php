@@ -33,6 +33,7 @@ Route::get('admin/recipe/delete/{id}','RecipeController@deleterecipe');
 Route::get('admin/recipe/edit/{id}','RecipeController@editrecipe');
 
 Route::post('admin/editrecipe','RecipeController@editrecipe');
+
 // ------ Linh
 Route::get('/admin',['middleware' => ['auth', 'admin'], function () {
     return view('pages.admin.index');
@@ -45,7 +46,10 @@ Route::get('admin/login', ['middleware' => 'guest','uses' => 'SessionController@
 Route::post('admin/loginStore', 'SessionController@adminStore');
 
 Route::controller('admin/ingredient', 'IngredientController');
+
+Route::controller('postRecipe', 'PostRecipeController');
 // ------ Linh
+
 
 
 // ------ Huyen
