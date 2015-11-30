@@ -75,6 +75,12 @@ class RecipeController extends Controller {
             return Redirect('index');
         }
     } 
+    public function  editrecipe($id){
+        
+            $recipe = recipe::find($id);
+            return view('pages.admin.recipedetail',['recipe' => $recipe]);
+             
+    } 
     public function  detail($id){
         $uid;
        if(Auth::user() == null)

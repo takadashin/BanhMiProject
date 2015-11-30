@@ -69,7 +69,24 @@ transition:all 0.3s ease;}
 .submitbutton:hover {background: #6666ff;color:white;-o-transition: all 0.3s ease;
 	-webkit-transition: all 0.3s ease;
 transition:all 0.3s ease;}
-
+.main_button{    margin: 10px;
+    background: #AFAFAF;
+    border: 1px solid #A1A1A1;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;font-weight: bold;}
+.main_button:hover {-o-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+transition:all 0.3s ease;
+    background: orange;
+    border-color: #FF7E00;
+}
+.form_recipe *{font-size:13px;font-family: 'Source Sans Pro', Arial;}
+.form_recipe {margin:10px;padding:15px;background:white;border:5px solid #dedede;border-radius: 5px;}
+.form_recipe label {margin:10px 0;float:left;}
+.form_recipe .textboxinput {}
+.form_recipe .textareainput {}
+.clear {clear:both}
 /* --------------------------Linh -----------------------------------------------------------*/
 div.login-admin-error-msg{position: absolute; color: red;margin-top: -33px;}
 a.log{font-size: 13px !important; color: lawngreen;text-decoration: underline !important}
