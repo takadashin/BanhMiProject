@@ -7,6 +7,7 @@
         <link href="{{ asset("assets/css/admin.css") }}" rel="stylesheet">
         <link rel="icon" type="image/ico" href="{{ asset('assets/images/favicon.ico') }}">
         <script src="{{ asset("assets/ckeditor/ckeditor.js") }}" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
     <body>
         <div id="body">

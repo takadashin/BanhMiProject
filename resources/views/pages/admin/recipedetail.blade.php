@@ -9,6 +9,8 @@
 @stop
 
 @section('content')
+
+<script src="{{ asset('assets/javascript/ajaxcall.js') }}" type="text/javascript"></script>
 <div class="form_recipe">
     <div>
     {!! Form::open(['url' => 'admin/editrecipe']) !!}
@@ -38,7 +40,7 @@
    
     <div>
         <h2>Ingredient</h2>
-        
+        <div id="gridingre">
         <table>
             <tr>
                 <th>Ingredient Name</th>
@@ -51,12 +53,15 @@
             <tr>
                 <td>{{$row->ingredient->name}}</td>
                 <td>{!! Form::text('txt_ingre'.$row->ingredient->id,$row->detail,['class'=>'textboxinput']) !!}</td>
-                <td><a>Save</a></td>
-                <td><a>Delete</a></td>
+                <td><a href="#" >Save</a></td>
+                <td><a  onClick="deletetesting({{$row->ingredientId}},{{$row->recipeid}},'{{ url()}}');" >Delete</a></td>
+                
+               
             </tr>
             @endforeach
             
         </table>
+            </div>
         <div style="margin-top:10px;">
             {!! Form::label('lbl_ingrename', 'Ingredient Name : ',['style'=>'float:left;']) !!}
             {!! Form::select('ddl_ingrename', $ingre)!!}
@@ -75,6 +80,7 @@
     {!! Form::close() !!}
     </div>
 </div>
+
 
 @stop
 

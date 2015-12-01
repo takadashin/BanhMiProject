@@ -33,6 +33,7 @@ Route::get('admin/recipe/delete/{id}','RecipeController@deleterecipe');
 Route::get('admin/recipe/edit/{id}','RecipeController@editrecipe');
 
 Route::post('admin/editrecipe','RecipeController@editrecipe');
+Route::controller('admin/editdetailrecipe', 'AdminRecipeController');
 
 // ------ Linh
 Route::get('/admin',['middleware' => ['auth', 'admin'], function () {

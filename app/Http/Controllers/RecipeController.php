@@ -13,13 +13,9 @@ use Illuminate\Http\Request;
 use Auth;
 
 class RecipeController extends Controller {
+    
     public function  index(){
-//        $cds =  DB::select('SELECT recipe.*,user.avatar,user.username,'
-//                . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
-//                . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
-//                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '
-//                . 'FROM recipe,user where recipe.userpostid = user.id order by recipe.datepost LIMIT 16');
-        
+  
         $cds = DB::table('recipe')
         ->join('user', 'recipe.userpostid', '=', 'user.id')
         ->select(DB::raw('recipe.* ,user.avatar,user.username,'
@@ -106,6 +102,6 @@ class RecipeController extends Controller {
         $vote = Vote::where('recipeid', $id)->where('userid', $uid)->count();
         return view('pages.recipedetail', ['recipe' => $recipe,'usercheck' => $userstuff,'ingre' => $detailIngres,'steps' => $steps,'comments'=>$comments,'follow'=>$follow,'made'=>$made,'vote'=>$vote]);
     } 
-    
+ 
     
 }
