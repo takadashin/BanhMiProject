@@ -19,17 +19,17 @@ class RecipeController extends Controller {
         $cds = DB::table('recipe')
         ->join('user', 'recipe.userpostid', '=', 'user.id')
         ->select(DB::raw('recipe.* ,user.avatar,user.username,'
-                . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
-                . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
-                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
+                . ' (select COUNT(follow.id) from follow WHERE follow.followeduserid = userpostid) as countfollow, '
+                . '(select COUNT(made.id) from made WHERE made.recipeid = recipe.id) as countmade, '
+                . '(select COUNT(vote.id) from vote WHERE vote.recipeid = recipe.id and likes = true) as countlike  '))
         ->orderBy('recipe.datepost', 'DESC')->take(16)
         ->get();
         $db =  DB::table('recipe')
         ->join('user', 'recipe.userpostid', '=', 'user.id')
         ->select(DB::raw('recipe.* ,user.avatar,user.username,'
-                . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
-                . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
-                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
+               . ' (select COUNT(follow.id) from follow WHERE follow.followeduserid = userpostid) as countfollow, '
+                . '(select COUNT(made.id) from made WHERE made.recipeid = recipe.id) as countmade, '
+                . '(select COUNT(vote.id) from vote WHERE vote.recipeid = recipe.id and likes = true) as countlike  '))
         ->orderBy('countlike')->take(16)
         ->get();
         return view('pages.index', ['recipe' => $cds,'popular' => $db]);
@@ -40,9 +40,9 @@ class RecipeController extends Controller {
         $cds = DB::table('recipe')
         ->join('user', 'recipe.userpostid', '=', 'user.id')
         ->select(DB::raw('recipe.* ,user.avatar,user.username,'
-                . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
-                . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
-                . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
+               . ' (select COUNT(follow.id) from follow WHERE follow.followeduserid = userpostid) as countfollow, '
+                . '(select COUNT(made.id) from made WHERE made.recipeid = recipe.id) as countmade, '
+                . '(select COUNT(vote.id) from vote WHERE vote.recipeid = recipe.id and likes = true) as countlike  '))
         ->orderBy('recipe.datepost', 'DESC')->paginate(9);
          
         
