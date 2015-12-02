@@ -72,11 +72,45 @@ Route::get('register/confirmation', function () {
     return view('pages.confirmation');
 });
 
-Route::get('chef','UserController@listChef');
+Route::get('chef','UserController@listChefForUser');
+
+
+//Route::get('admin/chefs/list','UserController@listChefForAdmin');
+Route::get('admin/chefs/list',['middleware' => 'guest','uses' => 'SessionController@adminLogin']);
+Route::get('admin/chefs/list',['middleware' => ['auth', 'admin'], 'uses' => 'UserController@listChefForAdmin']);
 
 Route::get('userprofile','UserController@showProfile');
 
 Route::post('userprofile', 'UserController@editProfile');
 
-Route::delete('userprofile/delete', 'UserController@deleteRecipe');
+Route::get('userprofile/delete/{id}', 'UserController@deleteRecipe');
+
+//Route::get('admin/edit_chef/{id}', 'UserController@editChef');
+Route::get('admin/edit_chef/{id}',['middleware' => 'guest','uses' => 'SessionController@adminLogin']);
+Route::get('admin/edit_chef/{id}',['middleware' => ['auth', 'admin'], 'uses' => 'UserController@editChef']);
+
+
+//Route::post('admin/chefs/update', 'UserController@updateChef');
+Route::get('admin/chefs/update',['middleware' => 'guest','uses' => 'SessionController@adminLogin']);
+Route::get('admin/chefs/update',['middleware' => ['auth', 'admin'], 'uses' => 'UserController@updateChef']);
+
+//Route::get('admin/chefs/delete/{id}', 'UserController@deleteChef');
+Route::get('admin/chefs/delete/{id}',['middleware' => 'guest','uses' => 'SessionController@adminLogin']);
+Route::get('admin/chefs/delete/{id}',['middleware' => ['auth', 'admin'], 'uses' => 'UserController@deleteChef']);
+
+Route::get('admin/create_chef',['middleware' => ['auth', 'admin'], function () {
+    return view('pages.admin.chefs.create_chef');
+}]);
+
+//Route::post('admin/chefs/create', 'UserController@createChef');
+Route::get('admin/chefs/create',['middleware' => 'guest','uses' => 'SessionController@adminLogin']);
+Route::get('admin/chefs/create',['middleware' => ['auth', 'admin'], 'uses' => 'UserController@createChef']);
+
+//Route::get('admin/detail_chef/{id}', 'UserController@detailChef');
+Route::get('admin/detail_chef/{id}',['middleware' => 'guest','uses' => 'SessionController@adminLogin']);
+Route::get('admin/detail_chef/{id}',['middleware' => ['auth', 'admin'], 'uses' => 'UserController@detailChef']);
+
+//Route::post('admin/chefs/search', 'SearchController@searchUser');
+Route::get('admin/chefs/search',['middleware' => 'guest','uses' => 'SessionController@adminLogin']);
+Route::get('admin/chefs/search',['middleware' => ['auth', 'admin'], 'uses' => 'SearchController@searchUser']);
 // ------ Huyen

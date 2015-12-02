@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="csrf-token" content="{!! csrf_token() !!}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        @yield('css')
         <link href="{{ asset("assets/css/admin.css") }}" rel="stylesheet">
         <link rel="icon" type="image/ico" href="{{ asset('assets/images/favicon.ico') }}">
         <script src="{{ asset("assets/ckeditor/ckeditor.js") }}" type="text/javascript"></script>
@@ -21,7 +22,7 @@
                 <div id="control_box">
                     <ul>
                         <li class="active"><a href="{{ url('admin/recipe') }}">Recipe</a></li>
-                        <li><a>User</a></li> 
+                        <li><a href="{{ url('admin/chefs/list') }}">User</li> 
                         <li><a href="{{ url('admin/ingredient') }}">Ingredient</a></li> 
                     </ul>
                 </div>
