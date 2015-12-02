@@ -113,8 +113,6 @@ transition:all 0.3s ease;
 }
 .ingre_step p{display: inline; margin-left:5px;}
 .ingre_step img{width:60%;height:auto;}
-a.log{color: darkorange}
-div.login{height: 10px; alignment-adjust: middle; float: right; margin-left: 10px}
 .ingre_step img{width:60%;height:auto;}
 .main_button{    margin: 10px;
     background: #AFAFAF;
