@@ -3,17 +3,23 @@
 namespace App\Http\Controllers;
 use App\contact_message;
 use App\userrecipe;
+use App\comment;
+use App\follow;
+use App\made;
+use App\vote;
+use App\step;
+use App\recept_ingre;
+use View;
+use Validator;
+use Session;
 use Illuminate\Http\Request;
 use Mail;
 use Hash;
 use Flash;
 use Redirect;
-use Session;
 use DB;
 use Input;
 use App\Recipe;
-use View;
-use Validator;
 use Auth;
 
 class UserController extends Controller {
@@ -91,8 +97,8 @@ class UserController extends Controller {
                     . ' (select COUNT(follow.id) from follow WHERE follow.userid = userpostid) as countfollow, '
                     . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
                     . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
-            ->orderBy('recipe.datepost')
-            ->get();
+            ->orderBy('recipe.datepost', 'desc')
+            ->paginate(6);
         }
         else
         {
@@ -103,8 +109,8 @@ class UserController extends Controller {
                     . '(select COUNT(made.id) from made WHERE made.userid = userpostid) as countmade, '
                     . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
             ->where('recipe.userpostid','=', $user['id'])
-            ->orderBy('recipe.datepost')
-            ->get();
+            ->orderBy('recipe.datepost', 'desc')
+            ->paginate(6);
         }
         //dd($cds);
         
@@ -113,8 +119,6 @@ class UserController extends Controller {
     
     public function editProfile(Request $request)
     {
-        //$username = Session::get('username');
-        
         $username = Auth::user()->username;
         $user = userrecipe::where('username','=',$username)->first();
 
@@ -150,9 +154,14 @@ class UserController extends Controller {
         return Redirect('userprofile');
     }
     
-    public function deleteRecipe()
-    {        
-        Recipe::find(Input::get('id'))->delete();
+    public function deleteRecipe($id)
+    {          
+        Vote::where('recipeid', $id)->delete();
+        Made::where('recipeid', $id)->delete();
+        Step::where('recipeid', $id)->delete();
+        Recept_ingre::where('recipeid', $id)->delete();
+        Comment::where('recipeid', '=', $id)->delete();
+        Recipe::find($id)->delete();
         Flash::overlay('Delete successfully');
         return Redirect::to('userprofile');
     }
@@ -172,8 +181,6 @@ class UserController extends Controller {
         //$user_id = DB::select('select id from user where username = ?', [$inputs['usersid']]);
         $user_id = userrecipe::where('username', '=', $inputs['usersid'])->first();
         
-        var_dump($user_id['id']);
-        
         if($user_id != null)
         {
 //            $user_id = json_decode(json_encode($user_id), true);
@@ -191,52 +198,142 @@ class UserController extends Controller {
         return Redirect('about');
     }
     
-//    public function upload() {
-//        // getting all of the post data
-//        $file = array('image' => Input::file('image'));
-//        // setting up rules
-//        $rules = array('image' => 'required|image|mimes:jpeg,jpg,bmp,png,gif|max:3000',);
-//        
-//        $validator = Validator::make($file, $rules);
-//        if ($validator->fails()) {
-//          // send back to the page with the input data and errors
-//          return Redirect::to('userprofile')->withInput()->withErrors($validator);
-//           
-//        }
-//        else {
-//          // checking file is valid.
-//          if (Input::file('image')->isValid()) {
-//            $destinationPath = 'public/assets/images/user_pic'; // upload path
-//            $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-//            $fileName = Input::get('username') . date("YmdHis", time()) . '.' . $extension; // renameing image
-//            Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-//            // sending back with message
-//            Flash::overlay('Upload successfully');
-//          }
-//          else 
-//           {
-//            // sending back with error message.
-//            Flash::overlay('Uploaded file is not valid');
-//            
-//          }
-//        }
-//        return Redirect::to('/userprofile');
-//
-//
-//    }
-    
-    public function paging() {
-        $recipes = recipe::paginate(2);
-        return View::make('pages.userprofile', compact('recipes'));
-    }
+    public function listChefForUser(){
+        if(Auth::check())
+        {
+            $username = Auth::user()->username;
+            $users = userrecipe::where('username','<>', $username)->paginate(4);
+        }
+        else 
+        {
+//            $users = DB::table('user')->paginate(4);
+            $users = userrecipe::paginate(4);
+        }
+        
+        
+        $recipes = Recipe::orderBy('datepost','desc')->get();
+        foreach ($recipes as $r) {
+            $userstuff = $r->user;
+            $follow = Follow::where('followeduserid', $userstuff->id)->count();
+            $made = Made::where('recipeid','=', $r->id)->count();
+            $vote = Vote::where('recipeid','=', $r->id)->count();
 
-
-    
-    public function listChef(){
-        return view('pages.cheflist');
+            $recipe_quantity[] = array(
+                'recId'=>$r->id,
+                'follow'=>$follow,
+                'made'=>$made,
+                'vote'=>$vote
+            );
+        }
+                
+            
+        $comments = Comment::all();
+        return view('pages.cheflist', ['users' => $users,'recipes' => $recipes, 'comments'=>$comments,'recipe_quantity'=>$recipe_quantity]);
+ 
     }
     
-   /**********************************************/
+    public function listChefForAdmin(){
+        $users = DB::table('user')->orderBy('id','desc')->paginate(3);
+        //return view('pages.admin.chefs', ['user' => $users]);
+        return view('pages.admin.chefs.list_chef', ['user' => $users]);
+    }
+    
+    public function editChef($id){
+        return view('pages.admin.chefs.edit_chef', ['user' => userrecipe::find($id)]);
+    }
+    
+    public function updateChef(Request $request){
+        $user = userrecipe::where('id','=',Input::get('id'))->first();
+        
+        $this->validate($request,
+                [
+                    'avatar' => 'image|mimes:jpeg,jpg,bmp,png,gif|max:3000',
+                    'firstname' => 'required|min:5',
+                    'lastname' => 'required|min:5',
+                    'password' => 'required|min:6',
+                    'email' => 'required|email'
+                ]
+                );       
+        
+        $inputs = $request->all();
+        $inputs['password'] = Hash::make($inputs['password']);
+
+        if (Input::hasFile('avatar') && $inputs['avatar']->isValid()) { 
+        
+            $destinationPath = 'public/assets/images/user_pic'; // upload path
+            $extension = $inputs['avatar']->getClientOriginalExtension(); // getting image extension
+            $fileName =$user['username'] . date("YmdHis", time()) . '.' . $extension; // renameing image
+            $inputs['avatar']->move($destinationPath, $fileName); // uploading file to given path
+            $inputs['avatar'] = $fileName;
+        }
+        else
+        {
+            Flash::error('Update failed.');
+        }
+        
+        
+        $user->fill($inputs)->save();
+        
+        // sending back with message
+        Flash::overlay('Update successfully');
+        
+        return Redirect('admin/chefs/list');
+    }
+
+    public function deleteChef($id)
+    {    
+        Vote::where('userid', $id)->delete();
+        Made::where('userid', $id)->delete();
+        Follow::where('userid', $id)->delete();
+        contact_message::where('usersid', $id)->delete();
+        Comment::where('userpostid', '=', $id)->delete();
+        Recipe::where('userpostid', '=', $id)->delete();
+        userrecipe::find($id)->delete();
+        Flash::overlay('Delete successfully');
+        return Redirect::to('admin/chefs/list');
+    }
+
+    public function createChef(Request $request){   
+        $this->validate($request,
+                [
+                    'firstname' => 'required|min:5',
+                    'lastname' => 'required|min:5',
+                    'username' => 'required|min:5|unique:user',
+                    'password' => 'required|min:6',
+                    'email' => 'required|email',
+                    'avatar' => 'image|mimes:jpeg,jpg,bmp,png,gif|max:3000'
+                ]
+                );       
+        
+        $inputs = $request->all();
+        
+        $inputs['password'] = Hash::make($inputs['password']);
+        
+        if (Input::hasFile('avatar') && $inputs['avatar']->isValid()) { 
+        
+            $destinationPath = 'public/assets/images/user_pic'; // upload path
+            $extension = $inputs['avatar']->getClientOriginalExtension(); // getting image extension
+            $fileName = $inputs['username'] . date("YmdHis", time()) . '.' . $extension; // renameing image
+            $inputs['avatar']->move($destinationPath, $fileName); // uploading file to given path
+            $inputs['avatar'] = $fileName;
+        }
+        else
+        {
+            Flash::error('Update failed.');
+        }
+        
+        userrecipe::create($inputs);
+        
+        Flash::message('New Chef is created.');
+        return Redirect::to('admin/chefs/list');
+    }
+    
+    public function detailChef($id){
+        $user = userrecipe::find($id);
+        //Session::flash('modal_message_error','Show detail');
+        return view('pages.admin.chefs.detail_chef', ['user' => $user]);
+    }
+    /**********************************************/
 }
 
 

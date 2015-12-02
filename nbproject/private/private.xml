@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/ProjectRecipe/resources/views/pages/admin/IngreListData.blade.php</file>
-            <file>file:/D:/xampp/htdocs/ProjectRecipe/public/assets/javascript/ajaxcall.js</file>
-            <file>file:/D:/xampp/htdocs/ProjectRecipe/app/Http/Controllers/RecipeController.php</file>
-            <file>file:/D:/xampp/htdocs/ProjectRecipe/resources/views/pages/admin/recipe.blade.php</file>
-            <file>file:/D:/xampp/htdocs/ProjectRecipe/app/Http/routes.php</file>
-            <file>file:/D:/xampp/htdocs/ProjectRecipe/resources/views/pages/admin/recipedetail.blade.php</file>
-            <file>file:/D:/xampp/htdocs/ProjectRecipe/app/Http/Controllers/AdminRecipeController.php</file>
+            <file>file:/C:/xampp/htdocs/ProjectRecipe/BanhMiProject/app/Http/routes.php</file>
+            <file>file:/C:/xampp/htdocs/ProjectRecipe/BanhMiProject/app/Http/Controllers/UserController.php</file>
+            <file>file:/C:/xampp/htdocs/ProjectRecipe/BanhMiProject/resources/views/pages/register.blade.php</file>
         </group>
     </open-files>
 </project-private>
