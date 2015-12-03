@@ -10,6 +10,7 @@ use App\Step;
 use App\Recept_ingre;
 use App\Ingredient;
 use Illuminate\Http\Request;
+use Input;
 use Auth;
 
 class RecipeController extends Controller {
@@ -75,13 +76,57 @@ class RecipeController extends Controller {
         
             $recipe = recipe::find($id);
              $ingre = Ingredient::all();
+             $steps = Step::where('recipeid', $id)->orderBy('steporder','ASC')->get();
+             $comments = comment::where('recipeid', '=', $id)->orderBy('created_at','desc')->get();
         $arrayingre = array();
         foreach($ingre as $row)
         {
             $arrayingre[$row->id] = $row->name;
         }
         
-            return view('pages.admin.recipedetail',['recipe' => $recipe,'ingre' => $arrayingre]);
+            return view('pages.admin.recipedetail',['recipe' => $recipe,'ingre' => $arrayingre,'step' => $steps,'comment'=>$comments]);
+             
+    } 
+    public function  addsteprecipe($id){
+
+            return view('pages.admin.stepdetail',['recipeid' => $id]);
+             
+    } 
+    public function  addstepdetail($id,Request $request){
+        if(Auth::user()->isAdmin())
+        {
+            $this->validate($request,
+                [
+                  'txt_step_order' => 'required|alpha_num',
+                    'txt_step_content'=> 'required'
+                ]
+                );
+            
+            $inputs = $request->all();
+           
+            if (Input::hasFile('picture') && $inputs['picture']->isValid()) { 
+        
+            $destinationPath = 'assets/images/article_pic'; // upload path
+            $extension = $inputs['picture']->getClientOriginalExtension(); // getting image extension
+            $fileName = "recipe_".$id .rand (1,100 ). date("YmdHis", time()) . '.' . $extension; // renameing image
+            $inputs['picture']->move($destinationPath, $fileName); // uploading file to given path
+            $inputs['picture'] = $fileName;
+            }
+            else
+            {
+                dd("error");
+            }
+            $item = new Step;
+            $item->content = $inputs['txt_step_content'];
+            $item->steporder = $inputs['txt_step_order'];
+            $item->recipeid =$id;
+            $item->picture = $inputs['picture'];
+            $item->save();
+            return Redirect('admin/recipe/edit/'.$id);
+        }
+        else {
+            return Redirect('index');
+        }
              
     } 
     public function  detail($id){
@@ -95,7 +140,7 @@ class RecipeController extends Controller {
         $recipe = recipe::find($id);
         $userstuff = $recipe->user;
         $detailIngres = $recipe->recept_ingre;
-        $steps = $recipe->step;
+        $steps = Step::where('recipeid', $id)->orderBy('steporder','ASC')->get();
         $comments = comment::where('recipeid', '=', $id)->orderBy('created_at','desc')->get();
         $follow = Follow::where('followeduserid', $userstuff->id)->where('userid', $uid)->count();
         $made = Made::where('recipeid', $id)->where('userid', $uid)->count();

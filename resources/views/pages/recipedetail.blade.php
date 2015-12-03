@@ -13,7 +13,7 @@
                     
                     <div style="float:left;text-align: center;width:60%;height:250px;overflow: hidden;position:relative;">
                         <h2 style="color:orange">{{$recipe->name}}</h2>
-                        <div><a href="{{ url('/user', $recipe->userpostid) }}"><img onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';" src="{{ asset('assets/images/user_pic/'.$usercheck->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> </a>Recipe by: {{$usercheck->username}}</div>
+                        <div><a ><img onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';" src="{{ asset('assets/images/user_pic/'.$usercheck->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> </a>Recipe by: {{$usercheck->username}}</div>
                         <div style="text-align: left;margin-top:20px;"><i>{{$recipe->Description}}</i></div>
                                 <div><ul class="navbar_action" >
                                        
@@ -24,7 +24,7 @@
                             </table> </div>
                     </div>
                 <div  style="float:right;width:39%;">
-                    <img style="height:auto;width:100%;" src="{{ asset('assets/images/article_pic/'.$recipe->img) }}" />
+                    <img style="height:auto;width:100%;" onError="this.onerror=null;this.src='{{ asset('assets/images/No_Image_Available.png') }}';" src="{{ asset('assets/images/article_pic/'.$recipe->img) }}" />
                 </div>
                 </div>
             </center>
@@ -42,7 +42,7 @@
                 <div class="clear"></div>
                 <h1 style="border-bottom: 1px solid #dedede;">Directions</h1>
                 <div class="ingre_box">
-                    <?php $count = 0; ?>
+                    <?php $count = 1; ?>
                     @foreach($steps as $row)
                     <div class="ingre_step"><i>{{$count++}}</i><p>{{$row->content}}</p>
                         <div style="text-align: center;"><img src="{{ asset('assets/images/article_pic/'.$row->picture) }}" /></div>
