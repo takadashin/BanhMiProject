@@ -16,9 +16,7 @@
 Route::get('index' , 'RecipeController@index');
 Route::get('recipe','RecipeController@recipe');
 Route::get('recipe/{id}','RecipeController@detail');
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/','RecipeController@index');
 
 
 Route::post('commentsubmit','CommentController@create');

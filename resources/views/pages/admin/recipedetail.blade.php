@@ -12,6 +12,11 @@
 
 <script src="{{ asset('assets/javascript/ajaxcall.js') }}" type="text/javascript"></script>
 <div class="form_recipe">
+     @if($errors->any())
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+     @endif
     <div>
     {!! Form::open(['url' => 'admin/editcontentrecipe/'.$recipe->id,'files' => true]) !!}
     <div>{!! Form::label('lbl_id', 'Recipe id : '.$recipe->id) !!}</div>

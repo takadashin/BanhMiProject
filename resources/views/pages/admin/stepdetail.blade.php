@@ -12,6 +12,11 @@
 
 <script src="{{ asset('assets/javascript/ajaxcall.js') }}" type="text/javascript"></script>
 <div class="form_recipe">
+     @if($errors->any())
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+     @endif
     <div>
         {!! Form::open(['url' => 'admin/editrecipe/addstep/'.$recipeid, 'files' => true]) !!}
          <div style="margin-top:10px;">

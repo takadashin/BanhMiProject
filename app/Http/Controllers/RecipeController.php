@@ -51,7 +51,7 @@ class RecipeController extends Controller {
     } 
      public function  adminrecipe(){
          
-        $cds = Recipe::orderBy('datepost')->paginate(9);
+        $cds = Recipe::orderBy('datepost','DESC')->paginate(12);
        
         return view('pages.admin.recipe', ['recipe' => $cds]);
     } 
