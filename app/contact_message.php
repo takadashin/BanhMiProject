@@ -6,7 +6,7 @@ class contact_message extends Model {
     
     protected  $table ="contact_message";
     public  $timestamps = false;
-    protected $fillable = ['name','email','comment', 'senddate', 'usersid', 'status'];
+    protected $fillable = ['name','email', 'subject','comment', 'senddate', 'reply_content','replydate', 'usersid', 'status'];
     
     public function users()
     {

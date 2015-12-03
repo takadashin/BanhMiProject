@@ -46,7 +46,7 @@ class UserController extends Controller {
         
         userrecipe::create($inputs);
         
-        $sent = Mail::send('pages.emailverify', $inputs, function($message) use ($inputs)
+        Mail::send('pages.emailverify', $inputs, function($message) use ($inputs)
         {
             $message->from("uh6062@gmail.com", "allstartrecipe");
             $message->to($inputs['email'], $inputs['firstname'].' '.$inputs['lastname'])
@@ -82,10 +82,10 @@ class UserController extends Controller {
 
     } 
     
-    public function showProfile(){
+    public function showProfile($username){
         
         //$username = Session::get('username');
-        $username = Auth::user()->username;
+        //$username = Auth::user()->username;
         
         $user = userrecipe::where('username','=',$username)->first();
         
@@ -166,37 +166,7 @@ class UserController extends Controller {
         return Redirect::to('userprofile');
     }
     
-    public function sendContact(Request $request){
-        $this->validate($request,
-                [
-                    'name' => 'required|min:5',
-                    'email' => 'required|email',
-                    'comment' => 'required|min:10'
-                ]
-                );
-        $inputs = $request->all();  
-        
-        $inputs['senddate'] = date("Y-m-d H:i:s", time());
-        
-        //$user_id = DB::select('select id from user where username = ?', [$inputs['usersid']]);
-        $user_id = userrecipe::where('username', '=', $inputs['usersid'])->first();
-        
-        if($user_id != null)
-        {
-//            $user_id = json_decode(json_encode($user_id), true);
-//          $inputs['usersid'] = (int)$user_id[0];
-            $inputs['usersid'] = $user_id['id'];
-        }
-        else
-        {
-            $inputs['usersid'] = NULL;
-        }
-        contact_message::create($inputs);
-        
-        Flash::overlay('Sending Successfully!!! Thank you for your commenting.');
-        
-        return Redirect('about');
-    }
+    
     
     public function listChefForUser(){
         if(Auth::check())

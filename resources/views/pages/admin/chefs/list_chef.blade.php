@@ -19,7 +19,6 @@
     {!! Form::open(array('url'=>'admin/chefs/search','method'=>'POST')) !!}
         <table>
             <tr>
-                <td><span class="errors">{{ $errors->first('keyword') }}</span></td>
                 <td>{!! Form::text('keyword', null, array('class' => 'form-control')) !!}</td>
                 <td style="padding: 5px;">
                     <button type="submit" class="btn btn-info">

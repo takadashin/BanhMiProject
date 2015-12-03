@@ -23,6 +23,7 @@
                     <ul>
                         <li class="active"><a href="{{ url('admin/recipe') }}">Recipe</a></li>
                         <li><a href="{{ url('admin/chefs/list') }}">User</li> 
+                        <li><a href="{{ url('admin/contacts/list') }}">Contact</li>
                         <li><a href="{{ url('admin/ingredient') }}">Ingredient</a></li> 
                     </ul>
                 </div>

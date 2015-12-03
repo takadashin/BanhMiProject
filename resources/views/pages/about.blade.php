@@ -55,7 +55,12 @@
                     <span class="errors">{{ $errors->first('email') }}</span>
                     {!! Form::text('email', null, array('class' => 'form-control')) !!}                     
                 </div>
-                
+                <div class="form-group">
+                    {!! Form::label('subject', 'Subject : ') !!}
+                    <br />
+                    <span class="errors">{{ $errors->first('subject') }}</span>
+                    {!! Form::text('subject', null, array('class' => 'form-control')) !!}                     
+                </div>
                 <div class="form-group">                   
                     {!! Form::label('comment', 'Comment : ') !!}                    
                     <br />

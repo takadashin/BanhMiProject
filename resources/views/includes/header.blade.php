@@ -1,7 +1,7 @@
 <div class="innerwrap">
     <div class="login_box"> 
         @if(Auth::check())
-            Welcome  <a class='log' href="{{ url('/userprofile') }}">{{ Auth::user()->username }}</a>
+            Welcome  <a class='log' href="{{ url('/userprofile', Auth::user()->username) }}">{{ Auth::user()->username }}</a>
             <a class='log' href="{{ url('/logout') }}">Log out</a>
         @else
             <a href="/twitterLogin">
@@ -17,8 +17,10 @@
             <img src="{{ asset('assets/images/logo.png') }}" />
         </div>
         <div class="search_box">
-            <input id="search_box" type="text" name="search_box" />
-            <input id="btn_search" type="button" name="btn_search" />
+            {!! Form::open(array('url'=>'home/search','method'=>'POST')) !!}
+                {!! Form::text('keyword', null, array('id' => 'search_box')) !!}
+                <button id="btn_search" type="submit"></button>
+            {!! Form::close() !!}
         </div>
         <div class="menu_box">
             <div class="menu_bar">
