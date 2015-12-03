@@ -34,7 +34,7 @@ Route::get('admin/recipe/edit/{id}','RecipeController@editrecipe');
 Route::get('admin/recipe/edit/addstep/{id}','RecipeController@addsteprecipe');
 
 Route::post('admin/editrecipe/addstep/{id}','RecipeController@addstepdetail');
-Route::post('admin/editrecipe','RecipeController@editrecipe');
+Route::post('admin/editcontentrecipe/{id}','RecipeController@editcontentrecipe');
 Route::controller('admin/editdetailrecipe', 'AdminRecipeController');
 
 // ------ Linh

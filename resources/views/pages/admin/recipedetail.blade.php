@@ -13,7 +13,7 @@
 <script src="{{ asset('assets/javascript/ajaxcall.js') }}" type="text/javascript"></script>
 <div class="form_recipe">
     <div>
-    {!! Form::open(['url' => 'admin/editrecipe']) !!}
+    {!! Form::open(['url' => 'admin/editcontentrecipe/'.$recipe->id,'files' => true]) !!}
     <div>{!! Form::label('lbl_id', 'Recipe id : '.$recipe->id) !!}</div>
 
     <div>{!! Form::label('lbl_user', 'User Post id : '.$recipe->user->username) !!}</div>

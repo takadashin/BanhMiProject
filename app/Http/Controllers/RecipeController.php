@@ -87,6 +87,50 @@ class RecipeController extends Controller {
             return view('pages.admin.recipedetail',['recipe' => $recipe,'ingre' => $arrayingre,'step' => $steps,'comment'=>$comments]);
              
     } 
+     public function  editcontentrecipe($id,Request $request){
+        
+            if(Auth::user()->isAdmin())
+            {
+                 $this->validate($request,
+                [
+                  'txt_title' => 'required',
+                    'txt_serve' => 'required',
+                    'txt_des' => 'required',
+                 
+                    
+                ]
+                );
+            
+            $inputs = $request->all();
+            $checkfile = false;
+            
+            
+            if (Input::hasFile('fileupload') && $inputs['fileupload']->isValid()) { 
+           
+            $destinationPath = 'assets/images/article_pic'; // upload path
+            $extension = $inputs['fileupload']->getClientOriginalExtension(); // getting image extension
+            $fileName = "recipe_".$id .rand (1,100 ). date("YmdHis", time()) . '.' . $extension; // renameing image
+            $inputs['fileupload']->move($destinationPath, $fileName); // uploading file to given path
+            $inputs['fileupload'] = $fileName;
+            $checkfile = true;
+            }
+            
+            $item = Recipe::find($id);
+            $item->name = $inputs['txt_title'];
+            $item->servings = $inputs['txt_serve'];
+            $item->Description = $inputs['txt_des'];
+            if($checkfile)
+            {
+                 $item->img = $inputs['fileupload'];
+            }
+            $item->save();
+                return Redirect('admin/recipe');
+            }
+        else {
+            return Redirect('index');
+        }
+             
+    } 
     public function  addsteprecipe($id){
 
             return view('pages.admin.stepdetail',['recipeid' => $id]);
