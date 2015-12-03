@@ -89,6 +89,9 @@ transition:all 0.3s ease;
 .clear {clear:both}
 #gridingre a{border:1px solid #a1a1a1;background: #dedede;border-radius: 5px;margin:10px;padding:5px;cursor:pointer;}
 #gridingre a:hover{background: orange;}
+
+#gridstep a{border:1px solid #a1a1a1;background: #dedede;border-radius: 5px;margin:10px;padding:5px;cursor:pointer;}
+#gridstep a:hover{background: orange;}
 /* --------------------------Linh -----------------------------------------------------------*/
 div.login-admin-error-msg{position: absolute; color: red;margin-top: -33px;}
 a.log{font-size: 13px !important; color: lawngreen;text-decoration: underline !important}

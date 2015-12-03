@@ -31,7 +31,9 @@ Route::post('commentsubmit','CommentController@create');
 Route::get('admin/recipe','RecipeController@adminrecipe');
 Route::get('admin/recipe/delete/{id}','RecipeController@deleterecipe');
 Route::get('admin/recipe/edit/{id}','RecipeController@editrecipe');
+Route::get('admin/recipe/edit/addstep/{id}','RecipeController@addsteprecipe');
 
+Route::post('admin/editrecipe/addstep/{id}','RecipeController@addstepdetail');
 Route::post('admin/editrecipe','RecipeController@editrecipe');
 Route::controller('admin/editdetailrecipe', 'AdminRecipeController');
 
