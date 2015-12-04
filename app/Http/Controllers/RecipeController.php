@@ -23,7 +23,7 @@ class RecipeController extends Controller {
                 . ' (select COUNT(follow.id) from follow WHERE follow.followeduserid = userpostid) as countfollow, '
                 . '(select COUNT(made.id) from made WHERE made.recipeid = recipe.id) as countmade, '
                 . '(select COUNT(vote.id) from vote WHERE vote.recipeid = recipe.id and likes = true) as countlike  '))
-        ->orderBy('recipe.datepost', 'DESC')->take(16)
+        ->orderBy('recipe.datepost', 'DESC')->take(8)
         ->get();
         $db =  DB::table('recipe')
         ->join('user', 'recipe.userpostid', '=', 'user.id')
@@ -31,7 +31,7 @@ class RecipeController extends Controller {
                . ' (select COUNT(follow.id) from follow WHERE follow.followeduserid = userpostid) as countfollow, '
                 . '(select COUNT(made.id) from made WHERE made.recipeid = recipe.id) as countmade, '
                 . '(select COUNT(vote.id) from vote WHERE vote.recipeid = recipe.id and likes = true) as countlike  '))
-        ->orderBy('countlike')->take(16)
+        ->orderBy('countlike')->take(8)
         ->get();
         return view('pages.index', ['recipe' => $cds,'popular' => $db]);
     }
@@ -44,7 +44,7 @@ class RecipeController extends Controller {
                . ' (select COUNT(follow.id) from follow WHERE follow.followeduserid = userpostid) as countfollow, '
                 . '(select COUNT(made.id) from made WHERE made.recipeid = recipe.id) as countmade, '
                 . '(select COUNT(vote.id) from vote WHERE vote.recipeid = recipe.id and likes = true) as countlike  '))
-        ->orderBy('recipe.datepost', 'DESC')->paginate(9);
+        ->orderBy('recipe.datepost', 'DESC')->paginate(16);
          
         
         return view('pages.recipe', ['recipe' => $cds]);
@@ -140,8 +140,8 @@ class RecipeController extends Controller {
 
             $query = DB::table('recipe')
             ->join('user', 'recipe.userpostid', '=', 'user.id')
-                    ->leftJoin('recipe_ingredient', 'recipe.id', '=', 'recipe_ingredient.recipeid')
-                    ->join('ingredient', 'ingredient.id', '=', 'recipe_ingredient.ingredientId')
+//                    ->leftJoin('recipe_ingredient', 'recipe.id', '=', 'recipe_ingredient.recipeid')
+//                    ->leftJoin('ingredient', 'ingredient.id', '=', 'recipe_ingredient.ingredientId')
             ->select(DB::raw('recipe.* ,user.avatar,user.username,'
                    . ' (select COUNT(follow.id) from follow WHERE follow.followeduserid = userpostid) as countfollow, '
                     . '(select COUNT(made.id) from made WHERE made.recipeid = recipe.id) as countmade, '
@@ -150,22 +150,44 @@ class RecipeController extends Controller {
             {
                 $qname = Input::get('txt_name');
                 $searchTerms = explode(' ', $qname);
+                if($qname != "")
+                {
                 foreach($searchTerms as $term)
                 {
                     $queryadd->orWhere('recipe.name', 'LIKE', '%'. $term .'%');
                 }
-            
-            }) ->where(function($queryadd)
-            {
-                $qingre = Input::get('txt_ingre');
-                $searchTerms = explode(' ', $qingre);
-                foreach($searchTerms as $term)
-                {
-                    $queryadd->orWhere('ingredient.name', 'LIKE', '%'. $term .'%');
                 }
             
             });
-
+            //->where(function($queryadd)
+//            {
+//                $qingre = Input::get('txt_ingre');
+//                $searchTerms = explode(' ', $qingre);
+//                if($qingre != "")
+//                {
+//                foreach($searchTerms as $term)
+//                {
+//                    $queryadd->orWhere('ingredient.name', 'LIKE', '%'. $term .'%');
+//                }
+//                }
+//            
+//            });
+           
+               
+                if(Input::get('txt_ingre') != "")
+                {
+                     $query->whereIn('recipe.id', function($queryadd)
+                     {
+                         $queryadd->select(DB::raw("recipeid"))
+                        ->from('recipe_ingredient')->join('ingredient', 'ingredient.id', '=', 'recipe_ingredient.ingredientId');
+                        $qingre = Input::get('txt_ingre');
+                        $searchTerms = explode(' ', $qingre);
+                        foreach($searchTerms as $term)
+                        {
+                            $queryadd->orWhere('ingredient.name', 'LIKE', '%'. $term .'%');
+                        }
+                     });
+                }
             $qsort= Input::get('dd_size');
             if($qsort == "D")
                 $query->orderBy('recipe.datepost', 'DESC');
@@ -174,8 +196,8 @@ class RecipeController extends Controller {
             else
                 $query->orderBy('countmade', 'DESC');
             
-           // dd($query->toSql());
-            $results = $query->distinct()->paginate(9);
+            //dd($query->toSql());
+            $results = $query->distinct()->paginate(16);
             
             return view('pages.recipe', ['recipe' => $results]);
              
