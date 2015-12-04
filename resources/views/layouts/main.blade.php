@@ -13,7 +13,7 @@
     <body>
     <div id="body_main">
         <div id="header">
-            @include('includes.header');
+            @include('includes.header')
         </div>
         
         <div class="clear" ></div>  
@@ -25,7 +25,7 @@
         <div class="clear" ></div>
         
         <div id="footer">
-            @include('includes.footer');
+            @include('includes.footer')
         </div>
     </div>
     </body>

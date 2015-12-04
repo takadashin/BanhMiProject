@@ -18,7 +18,8 @@
         </div>
         <div class="search_box">
             {!! Form::open(array('url'=>'home/search','method'=>'POST')) !!}
-                {!! Form::text('keyword', null, array('id' => 'search_box')) !!}
+                {!! Form::text('keyword', null, array(
+                    'id' => 'search_box')) !!}
                 <button id="btn_search" type="submit"></button>
             {!! Form::close() !!}
         </div>

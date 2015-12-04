@@ -83,9 +83,10 @@ class UserController extends Controller {
     } 
     
     public function showProfile($username){
-        
-        //$username = Session::get('username');
-        //$username = Auth::user()->username;
+//        if(Session::has('username'))
+//        {
+//            $username = Session::get('username');
+//        }
         
         $user = userrecipe::where('username','=',$username)->first();
         
@@ -99,6 +100,7 @@ class UserController extends Controller {
                     . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
             ->orderBy('recipe.datepost', 'desc')
             ->paginate(6);
+            
         }
         else
         {
@@ -111,11 +113,11 @@ class UserController extends Controller {
             ->where('recipe.userpostid','=', $user['id'])
             ->orderBy('recipe.datepost', 'desc')
             ->paginate(6);
+            
         }
-        //dd($cds);
-        
+//        dd($cds);
         return view('pages.userprofile', ['userinfo' => $user, 'recipe' => $cds]);
-    } 
+    }  
     
     public function editProfile(Request $request)
     {
@@ -134,7 +136,7 @@ class UserController extends Controller {
         $inputs = $request->all();
         if (Input::hasFile('avatar') && $inputs['avatar']->isValid()) { 
         
-            $destinationPath = 'public/assets/images/user_pic'; // upload path
+            $destinationPath = 'assets/images/user_pic'; // upload path
             $extension = $inputs['avatar']->getClientOriginalExtension(); // getting image extension
             $fileName = $inputs['username'] . date("YmdHis", time()) . '.' . $extension; // renameing image
             $inputs['avatar']->move($destinationPath, $fileName); // uploading file to given path
@@ -151,7 +153,7 @@ class UserController extends Controller {
         // sending back with message
         Flash::overlay('Update successfully');
         
-        return Redirect('userprofile');
+        return Redirect::action('UserController@showProfile')->with('username', $username);
     }
     
     public function deleteRecipe($id)
@@ -166,41 +168,28 @@ class UserController extends Controller {
         return Redirect::to('userprofile');
     }
     
-    
-    
     public function listChefForUser(){
-        if(Auth::check())
-        {
-            $username = Auth::user()->username;
-            $users = userrecipe::where('username','<>', $username)->paginate(4);
-        }
-        else 
-        {
-//            $users = DB::table('user')->paginate(4);
-            $users = userrecipe::paginate(4);
-        }
-        
-        
+        $users = userrecipe::where('role','<>','admin')->paginate(3);
         $recipes = Recipe::orderBy('datepost','desc')->get();
         foreach ($recipes as $r) {
             $userstuff = $r->user;
+            $comments = comment::where('recipeid', '=', $r->id)->orderBy('created_at','desc')->take(3)->get();
             $follow = Follow::where('followeduserid', $userstuff->id)->count();
             $made = Made::where('recipeid','=', $r->id)->count();
             $vote = Vote::where('recipeid','=', $r->id)->count();
-
+            
             $recipe_quantity[] = array(
-                'recId'=>$r->id,
+                'rec'=>$r,
                 'follow'=>$follow,
                 'made'=>$made,
-                'vote'=>$vote
+                'vote'=>$vote,
+                'comments'=>$comments
             );
-        }
-                
             
-        $comments = Comment::all();
-        return view('pages.cheflist', ['users' => $users,'recipes' => $recipes, 'comments'=>$comments,'recipe_quantity'=>$recipe_quantity]);
- 
+        }        
+        return view('pages.cheflist', ['users' => $users,'recipe_quantity'=>$recipe_quantity]); 
     }
+    
     
     public function listChefForAdmin(){
         $users = DB::table('user')->orderBy('id','desc')->paginate(3);

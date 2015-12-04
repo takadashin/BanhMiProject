@@ -54,10 +54,20 @@ transition:all 0.3s ease; }
 .sharing_box {background: url(../images/sharinglogo.png) no-repeat;float:right; background-size: contain;width:150px;height:110px; }
 .box_link {display: block;float:left;margin-left: 9px;margin-top: 5px;height: 45px;width: 44px;}
 .header_title {font-family: Arial, Helvetica, sans-serif;font-weight: bold;text-transform: uppercase;color: #4E6076;}
-.article {float:left;width:23%;background: #fff;border: 1px solid #dedede;border-radius: 5px;min-height: 275px;margin-right:10px;-moz-transition: all 0.3s ease;
+.article {
+	float:left;
+	width: 21%;
+	background: #fff;
+	border: 1px solid #dedede;
+	border-radius: 5px;
+	min-height: 275px;
+	margin-right:10px;
+	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
 	-webkit-transition: all 0.3s ease;
-transition:all 0.3s ease; margin-bottom: 10px;}
+	transition:all 0.3s ease;
+	margin-bottom: 10px;
+	}
 .article:hover {border: 1px solid #fff;-moz-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
 	-webkit-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
 	box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px; }
@@ -230,10 +240,19 @@ div #button input{
 /*recipe*/
 /*------------------------ Linh ------------------------------------------*/
 /*************Huyen****************/
-.article_about {float:left;background: #fff;border: 1px solid #dedede;border-radius: 5px;min-height: 400px;margin-right:10px;-moz-transition: all 0.3s ease;
+.article_about {
+	float:left;
+	background: #fff;
+	border: 1px solid #dedede;
+	border-radius: 5px;
+	min-height: 400px;
+	height: 1000px;
+	margin-right:10px;
+	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
 	-webkit-transition: all 0.3s ease;
-transition:all 0.3s ease; }
+	transition:all 0.3s ease;
+	}
 
 .errors { color: #C40D0D;font-weight: bold;}
 .success { color: #2ca02c;}

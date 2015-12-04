@@ -1,20 +1,29 @@
 @extends('layouts.main')
 
 @section('title')
-    Chef List
+    Search List
+@stop
+
+@section('css')
+     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 @stop
 
 @section('content') 
 
 <div class="innerwrap">
     <div class="header_title">
-        <h1>Chefs</h1>        
+        <h1>Results</h1>        
     </div>
-    <?php echo $users->render(); ?>
+    @include('flash::message')
+    {{Session::forget('recipes')}}
+    {{Session::forget('users')}}
+    {{ Session::forget('flash_notification.message')}}
+    
+@if($users != null && $recipe_quantity!=null)
     @foreach($users as $row_u)
     <div class="article" style="width: 1000px;" >
         <div style="float:left; width: 200px;text-align: center;border-right: 2px solid lightgray;cursor: pointer;"
-             onclick="window.location='{{ url("/userprofile", $row_u['username']) }}'">
+             onclick="window.location='{{ url("/userprofile", $row_u->username) }}'">
             <img src="{{asset('assets/images/user_pic/'.$row_u->avatar) }}"
                      style="width: 150px;height: 150px;"
                      onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';">
@@ -53,6 +62,6 @@
         </div>
     </div>        
     @endforeach   
-    <?php echo $users->render(); ?>
+@endif
 </div>
 @stop
