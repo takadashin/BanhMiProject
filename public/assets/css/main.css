@@ -160,13 +160,13 @@ div.login{height: 10px; alignment-adjust: middle; float: right; margin-left: 10p
 .login-error-msg{color: red;margin-left: 20px;}
 .login-admin-error-msg{color: red;margin-bottom: 5px;}
 .login-box{
-    background-color: darkkhaki;
+    background-color: white;border:5px solid #A1A1A1;border-radius: 5px;
     margin: 140px 400px 140px 471px;
     padding-left: 50px;
     padding-top: 25px;
     padding-bottom: 25px;
     box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
-    border: 1px;
+ 
 }
 .login-field-space{
     margin: 20px;
