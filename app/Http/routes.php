@@ -20,6 +20,7 @@ Route::get('/','RecipeController@index');
 
 
 Route::post('commentsubmit','CommentController@create');
+Route::get('searchsubmit','RecipeController@search');
 Route::get('getfollow/{cid}/{rid}', 'FollowController@followchef');
 Route::get('getmade/{rid}', 'MadeController@recipemade');
 Route::get('getvote/{rid}', 'VoteController@recipevote');

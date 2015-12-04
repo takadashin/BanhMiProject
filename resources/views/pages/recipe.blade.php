@@ -11,6 +11,28 @@
             <h1>LASTEST RECIPE</h1>
         </div>
         <div>
+            <div id="searchbox_ad">
+                {!! Form::open(['url' => 'searchsubmit','method' => 'get']) !!}
+                 <div>
+                    {!! Form::label('lbl_name', 'Search by name : ',['class'=> 'label_search']) !!}
+                    {!! Form::text('txt_name',null,['class'=> 'textbox_seach']) !!} 
+                </div>
+                 <div>
+                    {!! Form::label('lbl_ingre', 'Search by ingredients : ',['class'=> 'label_search']) !!}
+                    {!! Form::text('txt_ingre',null,['class'=> 'textbox_seach']) !!} 
+                </div>
+                 <div>
+                    {!! Form::label('lbl_sort', 'Sort by : ',['class'=> 'label_search']) !!}
+                    {!! Form::select('dd_size', array('D' => 'Latest Recipe', 'P' => 'Most like', 'M' => 'Most made',),null,['class'=> 'textbox_seach']); !!} 
+                </div>
+                <div style="float:right;">
+                    {!! Form::submit('Search',['class'=> 'main_button']) !!}</div>
+                <div class="clear"></div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+        
+        <div>
              @foreach($recipe as $row)
              <div style="cursor: pointer;" class="article" onclick="location.href='{{ url('/recipe', $row->id) }}';">
                 <center>
