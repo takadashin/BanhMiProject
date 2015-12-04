@@ -197,7 +197,7 @@ class RecipeController extends Controller {
                 $query->orderBy('countmade', 'DESC');
             
             //dd($query->toSql());
-            $results = $query->distinct()->paginate(16);
+            $results = $query->paginate(16);
             
             return view('pages.recipe', ['recipe' => $results]);
              
