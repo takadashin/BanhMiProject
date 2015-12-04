@@ -31,12 +31,14 @@
                             </div>                            
                             <h3>                    
                                 {!! Form::label('username', $userinfo->username) !!}
+                                {!! Form::hidden('id', $userinfo->id) !!}
+                                {!! Form::hidden('username', $userinfo->username) !!}
                             </h3>
                             
                             @if(Auth::check()&& $userinfo->username == Auth::user()->username)
                             
                             <div style="padding-left:45px;">
-                                {!! Form::file('avatar', null, array('class'=>'file')) !!}
+                                {!! Form::file('avatar', null, array('accept'=>'.jpg, .png')) !!}
                                 <span class="errors">{{ $errors->first('avatar') }}</span>
                             </div>  
                             <br/>

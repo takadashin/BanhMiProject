@@ -121,9 +121,6 @@ class UserController extends Controller {
     
     public function editProfile(Request $request)
     {
-        $username = Auth::user()->username;
-        $user = userrecipe::where('username','=',$username)->first();
-
         $this->validate($request,
                 [
                     'avatar' => 'image|mimes:jpeg,jpg,bmp,png,gif|max:3000',
@@ -134,8 +131,13 @@ class UserController extends Controller {
                 );       
         
         $inputs = $request->all();
-        if (Input::hasFile('avatar') && $inputs['avatar']->isValid()) { 
         
+        $user = userrecipe::where('id','=',$inputs['id'])->first();
+        
+        
+        
+        if (Input::hasFile('avatar') && $inputs['avatar']->isValid()) { 
+            
             $destinationPath = 'assets/images/user_pic'; // upload path
             $extension = $inputs['avatar']->getClientOriginalExtension(); // getting image extension
             $fileName = $inputs['username'] . date("YmdHis", time()) . '.' . $extension; // renameing image
@@ -144,16 +146,17 @@ class UserController extends Controller {
         }
         else
         {
-            Flash::error('Update failed.');
+//            dd(Input::get('avatar'));
+            Flash::overlay('Update failed.');
         }
         
         
         $user->fill($inputs)->save();
-        
+//        dd($user);
         // sending back with message
         Flash::overlay('Update successfully');
         
-        return Redirect::action('UserController@showProfile')->with('username', $username);
+        return Redirect::action('UserController@showProfile')->with('username', $user->username);
     }
     
     public function deleteRecipe($id)
