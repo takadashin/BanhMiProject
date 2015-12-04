@@ -15,10 +15,10 @@
         <h3>Navigation</h3>
         <div class="footer_info">
             <ul>
-                <li><a>Home page</a></li>
-                <li><a>Recipe</a></li>
-                <li><a>Chef</a></li>
-                <li><a>About us</a></li>
+                <li><a href="/index">Home page</a></li>
+                <li><a href="/recipe">Recipe</a></li>
+                <li><a href="/chef">Chef</a></li>
+                <li><a href="/about">About Us</a></li>
             </ul>
         </div>
     </div>
@@ -26,9 +26,9 @@
         <h3>Sponsor</h3>
         <div class="footer_info">
             <ul>
-                <li><a>KFC</a></li>
-                <li><a>MacDonald</a></li>
-                <li><a>Burger King</a></li>
+                <li><a href="http://www.kfc.ca/">KFC</a></li>
+                <li><a href="http://www.mcdonalds.ca/ca/en.html">MacDonald</a></li>
+                <li><a href="http://burgerking.ca/">Burger King</a></li>
             </ul>
         </div>
     </div>

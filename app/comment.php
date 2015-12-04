@@ -10,5 +10,10 @@ class comment extends Model{
         return $this->hasOne('App\userrecipe','id','userpostid');
     }
     
+    //Huyen
+    public function recipe()
+    {
+        return $this->belongsTo('App\recipe');
+    }
     
 }

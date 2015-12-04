@@ -13,7 +13,9 @@
 @stop
 
 @section('content')
+
 @include('flash::message')
+{{ Session::forget('flash_notification.message')}}
 
 <div>
     {!! Form::open(array('url'=>'admin/chefs/search','method'=>'POST')) !!}

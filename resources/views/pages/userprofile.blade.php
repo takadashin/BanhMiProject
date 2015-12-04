@@ -19,7 +19,7 @@
                 <div>
                     @include('flash::message')
                 </div>
-                <div class="article_about">
+                <div class="article_about" style="height: 860px;">
                     <div class="article_content">            
 
                         {!! Form::open(array('url'=>'userprofile','method'=>'POST', 'files'=>true)) !!}
@@ -30,11 +30,10 @@
                                 onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';">
                             </div>                            
                             <h3>                    
-                                {!! Form::label('username', $userinfo['username']) !!}
-                                {!! Form::hidden('username', $userinfo['username']) !!}
+                                {!! Form::label('username', $userinfo->username) !!}
                             </h3>
                             
-                            @if($userinfo['username']==Auth::user()->username)
+                            @if($userinfo->username == Auth::user()->username)
                             
                             <div style="padding-left:45px;">
                                 {!! Form::file('avatar', null, array('class'=>'file')) !!}
@@ -45,7 +44,7 @@
                                 {!! Form::label('firstname', 'First Name : ') !!}
                                 <br />
                                 <span class="errors">{{ $errors->first('firstname') }}</span>
-                                {!! Form::text('firstname', $userinfo['firstname'], array(
+                                {!! Form::text('firstname', $userinfo->firstname, array(
                                             'class' => 'form-control')) !!} 
                             </div>
 
@@ -53,7 +52,7 @@
                                 {!! Form::label('lastname', 'Last Name : ') !!}
                                 <br />
                                 <span class="errors">{{ $errors->first('lastname') }}</span>
-                                {!! Form::text('lastname', $userinfo['lastname'], array(
+                                {!! Form::text('lastname', $userinfo->lastname, array(
                                             'class' => 'form-control')) !!}
                             </div>
 
@@ -61,7 +60,7 @@
                                 {!! Form::label('email', 'Email Address : ') !!}
                                 <br />
                                 <span class="errors">{{ $errors->first('email') }}</span>
-                                {!! Form::text('email', $userinfo['email'], array(
+                                {!! Form::text('email', $userinfo->email, array(
                                             'class' => 'form-control')) !!}                    
                             </div>
 
@@ -69,7 +68,7 @@
                                 {!! Form::label('address', 'Address : ') !!}
                                 <br />
                                 <span class="errors">{{ $errors->first('address') }}</span>
-                                {!! Form::text('address', $userinfo['address'], array(
+                                {!! Form::text('address', $userinfo->address, array(
                                             'class' => 'form-control')) !!}                    
                             </div>
 
@@ -77,7 +76,7 @@
                                 {!! Form::label('phone', 'Phone : ') !!}
                                 <br />
                                 <span class="errors">{{ $errors->first('phone') }}</span>
-                                {!! Form::text('phone', $userinfo['phone'], array(
+                                {!! Form::text('phone', $userinfo->phone, array(
                                             'class' => 'form-control')) !!}                    
                             </div>
                             <br />
@@ -93,14 +92,15 @@
         </div>
         <div class="profile_right">
             <div class="article_content">
-                @if(!$recipe)
+                @if($recipe->count()==0)
                     <h3>You have no recipe yet.</h3>
                 @else
                     @foreach($recipe as $row)
-                     <div class="article" >
+                    <div class="article" style="width:21%;">
                         <center>
                             <div>
-                                <img src="{{ asset('assets/images/article_pic/'.$row->img) }}" />
+                                <img src="{{ asset('assets/images/article_pic/'.$row->img) }}" 
+                                     onError="this.onerror=null;this.src='{{ asset('assets/images/No_Image_Available.png') }}';"/>
                             </div>
 
                             <div class="article_content mid_content" >
