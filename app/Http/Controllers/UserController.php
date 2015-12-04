@@ -219,7 +219,7 @@ class UserController extends Controller {
 
         if (Input::hasFile('avatar') && $inputs['avatar']->isValid()) { 
         
-            $destinationPath = 'public/assets/images/user_pic'; // upload path
+            $destinationPath = 'assets/images/user_pic'; // upload path
             $extension = $inputs['avatar']->getClientOriginalExtension(); // getting image extension
             $fileName =$user['username'] . date("YmdHis", time()) . '.' . $extension; // renameing image
             $inputs['avatar']->move($destinationPath, $fileName); // uploading file to given path
@@ -270,7 +270,7 @@ class UserController extends Controller {
         
         if (Input::hasFile('avatar') && $inputs['avatar']->isValid()) { 
         
-            $destinationPath = 'public/assets/images/user_pic'; // upload path
+            $destinationPath = 'assets/images/user_pic'; // upload path
             $extension = $inputs['avatar']->getClientOriginalExtension(); // getting image extension
             $fileName = $inputs['username'] . date("YmdHis", time()) . '.' . $extension; // renameing image
             $inputs['avatar']->move($destinationPath, $fileName); // uploading file to given path

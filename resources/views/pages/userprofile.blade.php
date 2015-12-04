@@ -33,7 +33,7 @@
                                 {!! Form::label('username', $userinfo->username) !!}
                             </h3>
                             
-                            @if($userinfo->username == Auth::user()->username)
+                            @if(Auth::check()&& $userinfo->username == Auth::user()->username)
                             
                             <div style="padding-left:45px;">
                                 {!! Form::file('avatar', null, array('class'=>'file')) !!}
@@ -117,17 +117,12 @@
                                     <a href="{{ url('/user', $row->userpostid) }}"><img src="{{ asset('assets/images/user_pic/'.$row->avatar) }}" 
                                   onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';" style="width: 46px;height:46px;vertical-align: -19px;" /> </a>
                                 </div>
-                                @if($userinfo['username']==Auth::user()->username)
+                                @if(Auth::check()&& $userinfo['username']==Auth::user()->username)
                                 <div class="navbar_action" style="text-align: center;position: relative;">
-                                    @if($userinfo['role']=='admin')    
-                                        <button type="button" class="btn btn-s btn-primary" onclick="window.location='{{url('/recipe', $row->id)}}'">
-                                            <i class='glyphicon glyphicon-pencil'></i>
-                                        </button>
-                                    @else
-                                        <button type="button" class="btn btn-s btn-primary" onclick="window.location='{{url('/postRecipe', $row->id)}}'">
-                                            <i class='glyphicon glyphicon-pencil'></i>
-                                        </button>
-                                    @endif
+                                    
+                                    <button type="button" class="btn btn-s btn-primary" onclick="window.location='{{url('/postRecipe?id='. $row->id)}}'">
+                                        <i class='glyphicon glyphicon-pencil'></i>
+                                    </button>                                    
 
                                     <button class='btn btn-s btn-danger' type='button' 
                                             onclick="if (confirm('Are you sure want to delete this recipe?')) 
