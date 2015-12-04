@@ -9,7 +9,7 @@
 @stop
 
 @section('content') 
-    
+    <script src="{{ asset('assets/javascript/ajaxcall.js') }}" type="text/javascript"></script>
     <div class="innerwrap">
         <div class="header_title">
             <h1>Profile</h1>
@@ -19,13 +19,13 @@
                 <div>
                     @include('flash::message')
                 </div>
-                <div class="article_about" style="height: 860px;">
+                <div class="article_about" style="height: 850px;">
                     <div class="article_content">            
 
                         {!! Form::open(array('url'=>'userprofile','method'=>'POST', 'files'=>true)) !!}
                         <div style="width:300px;text-align: center"> 
                             <div style="padding-top: 10px;">                           
-                            <img src="{{asset('assets/images/user_pic/'.$userinfo->avatar) }}"
+                            <img id="blah" src="{{asset('assets/images/user_pic/'.$userinfo->avatar) }}"
                                 style="width: 180px;height: 180px"
                                 onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';">
                             </div>                            
@@ -38,7 +38,7 @@
                             @if(Auth::check()&& $userinfo->username == Auth::user()->username)
                             
                             <div style="padding-left:45px;">
-                                {!! Form::file('avatar', null, array('accept'=>'.jpg, .png')) !!}
+                                {!! Form::file('avatar', ['id'=>'imgInp', 'accept'=>'.jpg, .png']) !!}
                                 <span class="errors">{{ $errors->first('avatar') }}</span>
                             </div>  
                             <br/>
@@ -100,7 +100,7 @@
                     @foreach($recipe as $row)
                     <div class="article" style="width:21%;">
                         <center>
-                            <div>
+                            <div style="cursor: pointer" onclick="location.href='{{ url('/recipe', $row->id) }}';">
                                 <img src="{{ asset('assets/images/article_pic/'.$row->img) }}" 
                                      onError="this.onerror=null;this.src='{{ asset('assets/images/No_Image_Available.png') }}';"/>
                             </div>
@@ -116,7 +116,7 @@
                                 <a href="http://google.com"><img src="{{ asset('assets/images/thumpup.png') }}"  style="width: 15px;height:15px;vertical-align: -3px;" /> {{$row->countlike}}</a>
 
                                 <div style="margin-top:10px;text-align: right;">Made by 
-                                    <a href="{{ url('/user', $row->userpostid) }}"><img src="{{ asset('assets/images/user_pic/'.$row->avatar) }}" 
+                                    <a><img src="{{ asset('assets/images/user_pic/'.$row->avatar) }}" 
                                   onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';" style="width: 46px;height:46px;vertical-align: -19px;" /> </a>
                                 </div>
                                 @if(Auth::check()&& $userinfo['username']==Auth::user()->username)

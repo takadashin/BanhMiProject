@@ -11,4 +11,8 @@ class userrecipe extends Model{
         return $this->hasMany('App\contact_message');
     }
     
+    public function recipes()
+    {
+        return $this->hasMany('App\recipe');
+    }
 }

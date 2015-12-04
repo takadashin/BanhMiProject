@@ -18,7 +18,7 @@
     <div style="margin: 0 150px; width: 70%; background-color: lavenderblush; text-align: left;">        
         <div style="margin: 20px;">
             <br/>
-            {!! Form::open(['url' => 'admin/chefs/create', 'method' => 'POST', 'file' => true]) !!}
+            {!! Form::open(['url' => 'admin/chefs/create', 'method' => 'POST']) !!}
             <div>       
             {!! Form::label('firstname', 'First Name : ') !!}        
             <br />
@@ -73,12 +73,6 @@
                 <br />
                 <span class="errors">{{ $errors->first('role') }}</span>
                 {!! Form::select('role', ['admin' => 'admin', 'user' => 'user', 'twitter' => 'twitter'], null, array('class' => 'form-control')) !!}                   
-            </div>
-            <br/>
-            <div>
-                {!! Form::label('avatar', 'Profile Picture : ') !!}
-                <br />   
-                {!! Form::file('avatar', null, array('class' => 'file')) !!}                    
             </div>
             <br/>
             <div>

@@ -25,4 +25,10 @@ class recipe extends Model{
     {
         return $this->hasMany('App\comment','recipeid');
     }
+    
+    //Huyen
+    public function users()
+    {
+        return $this->belongto('App\userrecipe');
+    }
 }

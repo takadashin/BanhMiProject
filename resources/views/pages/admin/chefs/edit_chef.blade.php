@@ -14,7 +14,8 @@
 @stop
 
 @section('content')   
-    @include('flash::message')  
+    @include('flash::message') 
+    <script src="{{ asset('assets/javascript/ajaxcall.js') }}" type="text/javascript"></script>
     <div style="margin: 0 150px; width: 70%; background-color: lavenderblush; text-align: left;">  
         <div style="margin: 20px;">
         {!! Form::open(array('url'=>'admin/chefs/update','method'=>'POST', 'files'=>true))!!}
@@ -79,11 +80,11 @@
         <div>
             {!! Form::label('avatar', 'Profile Picture : ') !!}
             <br />        
-            <img src="{{asset('assets/images/user_pic/'.$user->avatar) }}"
+            <img id="blah" src="{{asset('assets/images/user_pic/'.$user->avatar) }}"
                      style="width: 180px;height: 180px"
                      onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';">
             <span class="errors">{{ $errors->first('avatar') }}</span>
-            {!! Form::file('avatar', null, array('class'=>'file')) !!}                 
+            {!! Form::file('avatar', ['id'=>'imgInp','accept'=>'.jpg, .png']) !!}                 
         </div>
         <br/>
         <div class="form-group">

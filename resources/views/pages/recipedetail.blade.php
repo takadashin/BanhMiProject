@@ -13,7 +13,9 @@
                     
                     <div style="float:left;text-align: center;width:60%;height:250px;overflow: hidden;position:relative;">
                         <h2 style="color:orange">{{$recipe->name}}</h2>
-                        <div><a ><img onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';" src="{{ asset('assets/images/user_pic/'.$usercheck->avatar) }}"  style="width: 46px;height:auto;vertical-align: -19px;" /> </a>Recipe by: {{$usercheck->username}}</div>
+                        <div><a href='{{url('/userprofile/'. $usercheck->username)}}'><img onError="this.onerror=null;this.src='{{ asset('assets/images/mystery_person.png') }}';" 
+                                      src="{{ asset('assets/images/user_pic/'.$usercheck->avatar) }}"  
+                                      style="width: 46px;height:auto;vertical-align: -19px;" /> </a>Recipe by: {{$usercheck->username}}</div>
                         <div style="text-align: left;margin-top:20px;"><i>{{$recipe->Description}}</i></div>
                                 <div><ul class="navbar_action" >
                                        

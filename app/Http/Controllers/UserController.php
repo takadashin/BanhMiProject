@@ -83,11 +83,6 @@ class UserController extends Controller {
     } 
     
     public function showProfile($username){
-//        if(Session::has('username'))
-//        {
-//            $username = Session::get('username');
-//        }
-        
         $user = userrecipe::where('username','=',$username)->first();
         
         if($user['role']=='admin')
@@ -100,7 +95,6 @@ class UserController extends Controller {
                     . '(select COUNT(vote.id) from vote WHERE vote.userid = userpostid and likes = true) as countlike '))
             ->orderBy('recipe.datepost', 'desc')
             ->paginate(6);
-            
         }
         else
         {
@@ -115,7 +109,6 @@ class UserController extends Controller {
             ->paginate(6);
             
         }
-//        dd($cds);
         return view('pages.userprofile', ['userinfo' => $user, 'recipe' => $cds]);
     }  
     
@@ -134,8 +127,6 @@ class UserController extends Controller {
         
         $user = userrecipe::where('id','=',$inputs['id'])->first();
         
-        
-        
         if (Input::hasFile('avatar') && $inputs['avatar']->isValid()) { 
             
             $destinationPath = 'assets/images/user_pic'; // upload path
@@ -146,17 +137,14 @@ class UserController extends Controller {
         }
         else
         {
-//            dd(Input::get('avatar'));
             Flash::overlay('Update failed.');
         }
         
-        
         $user->fill($inputs)->save();
-//        dd($user);
-        // sending back with message
-        Flash::overlay('Update successfully');
         
-        return Redirect::action('UserController@showProfile')->with('username', $user->username);
+        Flash::overlay('Update successfully');        
+        return Redirect::to('/userprofile/' . $user->username);
+        
     }
     
     public function deleteRecipe($id)
@@ -233,12 +221,8 @@ class UserController extends Controller {
             Flash::error('Update failed.');
         }
         
-        
         $user->fill($inputs)->save();
-        
-        // sending back with message
-        Flash::overlay('Update successfully');
-        
+        Flash::overlay('Update successfully');        
         return Redirect('admin/chefs/list');
     }
 
@@ -262,27 +246,13 @@ class UserController extends Controller {
                     'lastname' => 'required|min:5',
                     'username' => 'required|min:5|unique:user',
                     'password' => 'required|min:6',
-                    'email' => 'required|email',
-                    'avatar' => 'image|mimes:jpeg,jpg,bmp,png,gif|max:3000'
+                    'email' => 'required|email'                    
                 ]
                 );       
         
         $inputs = $request->all();
         
         $inputs['password'] = Hash::make($inputs['password']);
-        
-        if (Input::hasFile('avatar') && $inputs['avatar']->isValid()) { 
-        
-            $destinationPath = 'assets/images/user_pic'; // upload path
-            $extension = $inputs['avatar']->getClientOriginalExtension(); // getting image extension
-            $fileName = $inputs['username'] . date("YmdHis", time()) . '.' . $extension; // renameing image
-            $inputs['avatar']->move($destinationPath, $fileName); // uploading file to given path
-            $inputs['avatar'] = $fileName;
-        }
-        else
-        {
-            Flash::error('Update failed.');
-        }
         
         userrecipe::create($inputs);
         
@@ -292,7 +262,6 @@ class UserController extends Controller {
     
     public function detailChef($id){
         $user = userrecipe::find($id);
-        //Session::flash('modal_message_error','Show detail');
         return view('pages.admin.chefs.detail_chef', ['user' => $user]);
     }
     /**********************************************/
