@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    
+
     <table class="Datagrid" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <th>ID</th>
@@ -31,6 +31,10 @@
             <td><a href="{{ url('admin/recipe/edit',$row->id) }}"><img src="{{ asset('assets/images/edit.png') }}">Edit</a></td>
         </tr>
         @endforeach
+        
     </table>
+<div>
+        <?php echo $recipe->render(); ?>
+        </div>
 @stop
 

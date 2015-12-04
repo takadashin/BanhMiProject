@@ -13,8 +13,8 @@
         <div>
              @foreach($recipe as $row)
              <div style="cursor: pointer;" class="article" onclick="location.href='{{ url('/recipe', $row->id) }}';">
-                <center>
-                    <div>
+                <center >
+                    <div style="height: 180px;">
                         <img onError="this.onerror=null;this.src='{{ asset('assets/images/No_Image_Available.png') }}';" src="{{ asset('assets/images/article_pic/'.$row->img) }}" />
                     </div>
 
@@ -61,7 +61,7 @@
                  }
                  ?>
                 <center>
-                    <div>
+                    <div style="height: 180px;">
                         <img onError="this.onerror=null;this.src='{{ asset('assets/images/No_Image_Available.png') }}';" src="{{ asset('assets/images/article_pic/'.$row->img) }}" />
                     </div>
 

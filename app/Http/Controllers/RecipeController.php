@@ -51,7 +51,7 @@ class RecipeController extends Controller {
     } 
      public function  adminrecipe(){
          
-        $cds = Recipe::orderBy('datepost')->paginate(9);
+        $cds = Recipe::orderBy('datepost','DESC')->paginate(12);
        
         return view('pages.admin.recipe', ['recipe' => $cds]);
     } 
@@ -85,6 +85,99 @@ class RecipeController extends Controller {
         }
         
             return view('pages.admin.recipedetail',['recipe' => $recipe,'ingre' => $arrayingre,'step' => $steps,'comment'=>$comments]);
+             
+    } 
+     public function  editcontentrecipe($id,Request $request){
+        
+            if(Auth::user()->isAdmin())
+            {
+                 $this->validate($request,
+                [
+                  'txt_title' => 'required',
+                    'txt_serve' => 'required',
+                    'txt_des' => 'required',
+                 
+                    
+                ]
+                );
+            
+            $inputs = $request->all();
+            $checkfile = false;
+            
+            
+            if (Input::hasFile('fileupload') && $inputs['fileupload']->isValid()) { 
+           
+            $destinationPath = 'assets/images/article_pic'; // upload path
+            $extension = $inputs['fileupload']->getClientOriginalExtension(); // getting image extension
+            $fileName = "recipe_".$id .rand (1,100 ). date("YmdHis", time()) . '.' . $extension; // renameing image
+            $inputs['fileupload']->move($destinationPath, $fileName); // uploading file to given path
+            $inputs['fileupload'] = $fileName;
+            $checkfile = true;
+            }
+            
+            $item = Recipe::find($id);
+            $item->name = $inputs['txt_title'];
+            $item->servings = $inputs['txt_serve'];
+            $item->Description = $inputs['txt_des'];
+            if($checkfile)
+            {
+                 $item->img = $inputs['fileupload'];
+            }
+            $item->save();
+                return Redirect('admin/recipe');
+            }
+        else {
+            return Redirect('index');
+        }
+             
+    } 
+     public function  search(Request $request){
+
+            $inputs = $request->all();
+            
+
+            
+
+            $query = DB::table('recipe')
+            ->join('user', 'recipe.userpostid', '=', 'user.id')
+                    ->leftJoin('recipe_ingredient', 'recipe.id', '=', 'recipe_ingredient.recipeid')
+                    ->join('ingredient', 'ingredient.id', '=', 'recipe_ingredient.ingredientId')
+            ->select(DB::raw('recipe.* ,user.avatar,user.username,'
+                   . ' (select COUNT(follow.id) from follow WHERE follow.followeduserid = userpostid) as countfollow, '
+                    . '(select COUNT(made.id) from made WHERE made.recipeid = recipe.id) as countmade, '
+                    . '(select COUNT(vote.id) from vote WHERE vote.recipeid = recipe.id and likes = true) as countlike  '))
+                    ->where(function($queryadd)
+            {
+                $qname = Input::get('txt_name');
+                $searchTerms = explode(' ', $qname);
+                foreach($searchTerms as $term)
+                {
+                    $queryadd->orWhere('recipe.name', 'LIKE', '%'. $term .'%');
+                }
+            
+            }) ->where(function($queryadd)
+            {
+                $qingre = Input::get('txt_ingre');
+                $searchTerms = explode(' ', $qingre);
+                foreach($searchTerms as $term)
+                {
+                    $queryadd->orWhere('ingredient.name', 'LIKE', '%'. $term .'%');
+                }
+            
+            });
+
+            $qsort= Input::get('dd_size');
+            if($qsort == "D")
+                $query->orderBy('recipe.datepost', 'DESC');
+            else if($qsort == "P")
+                $query->orderBy('countlike', 'DESC');
+            else
+                $query->orderBy('countmade', 'DESC');
+            
+           // dd($query->toSql());
+            $results = $query->distinct()->paginate(9);
+            
+            return view('pages.recipe', ['recipe' => $results]);
              
     } 
     public function  addsteprecipe($id){

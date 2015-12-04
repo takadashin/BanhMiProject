@@ -17,12 +17,11 @@ Route::post('admin/(:any)',['middleware' => 'guest','uses' => 'SessionController
 Route::get('index' , 'RecipeController@index');
 Route::get('recipe','RecipeController@recipe');
 Route::get('recipe/{id}','RecipeController@detail');
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/','RecipeController@index');
 
 
 Route::post('commentsubmit','CommentController@create');
+Route::get('searchsubmit','RecipeController@search');
 Route::get('getfollow/{cid}/{rid}', 'FollowController@followchef');
 Route::get('getmade/{rid}', 'MadeController@recipemade');
 Route::get('getvote/{rid}', 'VoteController@recipevote');
@@ -35,7 +34,7 @@ Route::get('admin/recipe/edit/{id}','RecipeController@editrecipe');
 Route::get('admin/recipe/edit/addstep/{id}','RecipeController@addsteprecipe');
 
 Route::post('admin/editrecipe/addstep/{id}','RecipeController@addstepdetail');
-Route::post('admin/editrecipe','RecipeController@editrecipe');
+Route::post('admin/editcontentrecipe/{id}','RecipeController@editcontentrecipe');
 Route::controller('admin/editdetailrecipe', 'AdminRecipeController');
 
 // ------ Linh

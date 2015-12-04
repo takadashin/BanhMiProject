@@ -23,6 +23,11 @@ h3, p {margin:0;padding:0}
 #recipe_detail {background:#fff;border-radius: 5px;-moz-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
 	-webkit-box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px;
 	box-shadow: rgba(0, 0, 0, 0.17) 0 5px 13px; min-height: 200px; }
+#searchbox_ad {    background: white;
+    border: 5px solid #a1a1a1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 40px;}
 
 /*Class elements*/
 .innerwrap {width:998px;margin:0 auto;}
@@ -147,7 +152,8 @@ transition:all 0.3s ease}
 .pagination li:hover a{color:white;}
 .pagination .active {background: orange;color:white;}
 .navbar_action .active {background: orange;}
-
+.label_search {font-weight: 800px;width:200px;text-align: right;display:inline-block;margin:10px;}
+.textbox_seach {border:1px solid #dedede;padding:5px;border-radius:5px;width:50%;font-family: "Comic Sans MS", cursive, sans-serif;}
 /*------------------------------------ Linh ------------------------------------------ */
 a.log{color: darkkhaki}
 div.login{height: 10px; alignment-adjust: middle; float: right; margin-left: 10px}
