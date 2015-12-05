@@ -4,35 +4,32 @@ $.ajaxSetup({
     }
 });
 
-function Recipe(){
-    name;
-    description;
-    servings;
-    image;
+function updateRecipe(id) {
+    document.getElementById("recipeForm").submit();
 }
 
-function getRecipefield(recipe){
-    recipe.name = $('#name').val();
-    recipe.description = $('#description').val();
-    recipe.servings = $('#servings').val();
-    recipe.image = $('#image').val();
-}
-
-function setRecipefield(recipe){
-    $('#name').val(recipe.name);
-    $('#description').val(recipe.description);
-    $('#servings').val(recipe.servings);
-     $('#image').val(recipe.image);
-}
-
-function addRecipe() {
-    recipe = new Recipe;
-    getRecipefield(recipe);
-    $.post("postRecipe/add/", {name: recipe.name,description: recipe.description, servings:recipe.servings, image:recipe.image}).done(function (data) {
-        setRecipefield(recipe); 
-        $('#recipeDetail').show();
+function updateIngredient(id) {
+    
+    ingredientId = $("[name=ingredientId" + id + "]").val();
+    detail = $('[name=detail' + id + ']').val();
+    $.post("postRecipe/updateingredient/" + id, {ingredientId:ingredientId,detail:detail}).done(function (recipeId) {
+        window.location.href = 'postRecipe?id=' + recipeId;
     }).fail(function() {
-                alert( "error" );
-    });;
+           alert( "error" );
+    });
 }
 
+function updateStep(id) {
+    document.getElementById("stepForm").submit();
+}
+
+
+function changeImage(input,id){
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#stepImage' + id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+     }
+}
