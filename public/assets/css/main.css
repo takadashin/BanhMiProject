@@ -209,7 +209,7 @@ a.addAnotherIngredient {
     padding: 0 10px;
 }
 .input-row {
-    margin-bottom: 3.8px;
+    margin-bottom: 10px;
 }
 .input-cell p {
     margin-bottom: 5px;
@@ -227,7 +227,7 @@ a.addAnotherIngredient {
     width: 500px;
     height: 23px;
 }
-div#ingredients{
+div#ingredients, div#steps {
     margin-bottom: 20px;
 }
 div #button{
@@ -237,9 +237,39 @@ div #button input{
     margin-left: 15px;
     margin-bottom: 10px;
 }
+
+.updateButton{
+    width: 23px !important;
+    height: 23px !important;
+}
+
+#steps .input-row .headercell-1{
+    margin-right: 8px;
+}
+#steps .input-row .headercell-2{
+    margin-right: 284px;
+}
+#steps .input-row .cell-2{
+    padding-left: 0px;
+}
+.step-content{
+    height: 108px;
+}
+
+.step-order{
+    width: 74px !important;
+}
+#steps .input-row .cell-2 input{
+    width:250px;
+}
+#steps .input-row .cell-3{
+    width: 290px;
+    margin-left:-8px;
+}
+
 /*recipe*/
 /*------------------------ Linh ------------------------------------------*/
-/*************Huyen****************/
+
 .article_about {
 	float:left;
 	background: #fff;
