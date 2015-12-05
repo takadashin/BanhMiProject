@@ -6,7 +6,6 @@ use Request;
 
 
 class IngredientController extends Controller{
-    public $restful = true;
 
     public function __construct() {
        $this->middleware('admin');
