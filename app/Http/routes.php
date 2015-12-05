@@ -51,7 +51,10 @@ Route::post('admin/loginStore', 'SessionController@adminStore');
 Route::controller('admin/ingredient', 'IngredientController');
 
 Route::controller('postRecipe', 'PostRecipeController');
+Route::get('postRecipe/{id}', 'PostRecipeController@getIndex');
+
 // ------ Linh
+
 
 
 
