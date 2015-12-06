@@ -39,7 +39,7 @@ Route::controller('admin/editdetailrecipe', 'AdminRecipeController');
 
 // ------ Linh
 Route::get('/admin',['middleware' => ['auth', 'admin'], function () {
-    return view('pages.admin.index');
+    return Redirect('admin/recipe');
 }]);
 Route::get('twitterLogin', 'SessionController@twitterLogin');
 Route:resource('sessions', 'SessionController');

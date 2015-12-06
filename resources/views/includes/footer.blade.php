@@ -1,16 +1,7 @@
 
     
 <div class="innerwrap">
-    <div class="footer_box">
-        <h3>Recent Post</h3>
-        <div class="footer_info">
-            <ul>
-                <li><a>Tofu Deep Fries</a></li>
-                <li><a>French Lasana</a></li>
-                <li><a>Monster chicken</a></li>
-            </ul>
-        </div>
-    </div>
+    
     <div class="footer_box">
         <h3>Navigation</h3>
         <div class="footer_info">

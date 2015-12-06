@@ -154,6 +154,7 @@ transition:all 0.3s ease}
 .navbar_action .active {background: orange;}
 .label_search {font-weight: 800px;width:200px;text-align: right;display:inline-block;margin:10px;}
 .textbox_seach {border:1px solid #dedede;padding:5px;border-radius:5px;width:50%;font-family: "Comic Sans MS", cursive, sans-serif;}
+.footer_info a{font-family: "Comic Sans MS", cursive, sans-serif;text-decoration: none;color:rgb(78, 96, 118)}
 /*------------------------------------ Linh ------------------------------------------ */
 a.log{color: darkkhaki}
 div.login{height: 10px; alignment-adjust: middle; float: right; margin-left: 10px}

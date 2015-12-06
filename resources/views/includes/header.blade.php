@@ -14,7 +14,8 @@
     <div class="clear"></div>
     <div style="margin-top:7px;">
         <div class="logo_box">
-            <img src="{{ asset('assets/images/logo.png') }}" />
+            <a href="index">
+                <img src="{{ asset('assets/images/logo.png') }}" /></a>
         </div>
         <div class="search_box">
             {!! Form::open(array('url'=>'home/search','method'=>'POST')) !!}
