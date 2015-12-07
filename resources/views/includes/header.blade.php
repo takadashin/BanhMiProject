@@ -14,7 +14,7 @@
     <div class="clear"></div>
     <div style="margin-top:7px;">
         <div class="logo_box">
-            <a href="index">
+            <a href="{{ url('/index') }}">
                 <img src="{{ asset('assets/images/logo.png') }}" /></a>
         </div>
         <div class="search_box">
