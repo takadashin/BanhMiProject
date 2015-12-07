@@ -47,7 +47,7 @@
                     <?php $count = 1; ?>
                     @foreach($steps as $row)
                     <div class="ingre_step"><i>{{$count++}}</i><p>{{$row->content}}</p>
-                        <div style="text-align: center;"><img src="{{ asset('assets/images/article_pic/'.$row->picture) }}" /></div>
+                        <div style="text-align: center;"><img onError="this.style.display = 'none';" src="{{ asset('assets/images/article_pic/'.$row->picture) }}" /></div>
                     </div>
                     
                     @endforeach
