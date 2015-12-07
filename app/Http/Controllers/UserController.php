@@ -156,7 +156,7 @@ class UserController extends Controller {
         Comment::where('recipeid', '=', $id)->delete();
         Recipe::find($id)->delete();
         Flash::overlay('Delete successfully');
-        return Redirect::to('userprofile');
+        return Redirect::to('userprofile/' . Auth::user()->username);
     }
     
     public function listChefForUser(){
