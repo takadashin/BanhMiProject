@@ -21,10 +21,10 @@
                 </div>
                 <div id="control_box">
                     <ul>
-                        <li class="active"><a href="{{ url('admin/recipe') }}">Recipe</a></li>
-                        <li><a href="{{ url('admin/chefs/list') }}">User</li> 
-                        <li><a href="{{ url('admin/contacts/list') }}">Contact</li>
-                        <li><a href="{{ url('admin/ingredient') }}">Ingredient</a></li> 
+                        <li <?php echo (Request::url() === url('admin/recipe')?'class="active"':"") ?> ><a href="{{ url('admin/recipe') }}">Recipe</a></li>
+                        <li <?php echo (Request::url() === url('admin/chefs/list')?'class="active"':"") ?>><a href="{{ url('admin/chefs/list') }}">User</li> 
+                        <li <?php echo (Request::url() === url('admin/contacts/list')?'class="active"':"") ?>><a href="{{ url('admin/contacts/list') }}">Contact</li>
+                        <li <?php echo (Request::url() === url('admin/ingredient')?'class="active"':"") ?>><a href="{{ url('admin/ingredient') }}">Ingredient</a></li> 
                     </ul>
                 </div>
             </div>
